@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
+//#include <conio.h>
 
 int main()
 	{
 	
 		// Declaring global variables
-		
-		char primerMensaje[50]; 
+ 
 		int primerValor;
 		int segundoValor;
 		int resultado;
@@ -26,33 +25,56 @@ int main()
 		
 		//-------------------------------------------------------------------------------------------------------
 		
-		printf("Seleccionar una opcion: ");
-		printf("1... Suma");
-		printf("2... Multiplicar");
-		printf("3... Resta");
-		printf("4... Division");
-		scanf("%d", option);
+		printf("Seleccionar una opcion: \n");
+		printf("1... Suma\n");
+		printf("2... Multiplicar\n");
+		printf("3... Resta\n");
+		printf("4... Division\n");
+		scanf("%d", &option);
 		
-		if option = 1:
-			
+		if (option == 1){
+				// Suma super simple
+			printf("Ingrese el primer valor: ");
+			scanf("%d", &primerValor);
+			printf("Ingrese el segundo valor: ");
+			scanf("%d", &segundoValor);
+			resultado = primerValor + segundoValor;
+			printf("Resultado de la suma: %d", resultado);
+			printf("\n");
+		}
 		
-			// Suma super simple
-		printf("\n");
-		printf("Ingrese el primer valor: ");
-		scanf("%d", &primerValor);
-		printf("Ingrese el segundo valor: ");
-		scanf("%d", &segundoValor);
-		resultado = primerValor + segundoValor;
-		printf("Resultado de la suma: %d", resultado);
+		if (option == 2){
+				// Multiplicacion super simple
+			printf("Ingrese el primer valor: ");
+			scanf("%d", &primerValor);
+			printf("Ingrese el segundo valor: ");
+			scanf("%d", &segundoValor);
+			resultado = primerValor * segundoValor;
+			printf("Resultado de la multiplicacion: %d", resultado);
+			printf("\n");
+		}
+
+		if (option == 3){
+				// Resta super simple
+			printf("Ingrese el primer valor: ");
+			scanf("%d", &primerValor);
+			printf("Ingrese el segundo valor: ");
+			scanf("%d", &segundoValor);
+			resultado = primerValor - segundoValor;
+			printf("Resultado de la resta: %d", resultado);
+			printf("\n");
+		}
 		
-			// Multiplicacion super simple!
-		printf("\n");
-		printf("Ingrese el primer valor: ");
-		scanf("%d", &primerValor);
-		printf("Ingrese el segundo valor: ");
-		scanf("%d", &segundoValor);
-		resultado = primerValor * segundoValor;
-		printf("Resultado de la multiplicacion: %d", resultado);
+		if (option == 4){
+				// Division super simple
+			printf("Ingrese el primer valor: ");
+			scanf("%d", &primerValor);
+			printf("Ingrese el segundo valor: ");
+			scanf("%d", &segundoValor);
+			resultado = primerValor / segundoValor;
+			printf("Resultado de la division: %d", resultado);
+			printf("\n");
+		}
 		
 	return 0;
 
