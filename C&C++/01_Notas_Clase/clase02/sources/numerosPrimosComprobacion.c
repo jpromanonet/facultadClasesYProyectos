@@ -24,7 +24,7 @@ int main()
 					}
 				else
 					{
-					printf("Tu numero no es primo! \n");
+						printf("Tu numero no es primo! \n");
 					}
 			}
 		else

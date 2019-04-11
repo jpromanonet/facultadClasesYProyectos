@@ -5,25 +5,14 @@
 int main()
 	{
 	
-		// Declaring global variables
+		// Declarando variables
  
 		int primerValor;
 		int segundoValor;
 		int resultado;
 		int option;
-			//Para declarar una variable, el orden es el siguiente:
-			//	datatype <nombreVariable>[lenght] ---> si es string o similar	
-		
-		// Program logic
-		
-			// Mostrar palabra
-				//printf("Escribi una palabra: "); //Salida muestra en pantalla
-		
-				//scanf(primerMensaje); // Asigna un valor a una variable
-				//printf("Tu palabra es: ");
-				//printf(gets(primerMensaje)); // Llama la variable y al estar dentro de printf, la imprime
-		
-		//-------------------------------------------------------------------------------------------------------
+
+		// Parametros del usuario
 		
 		printf("**********************|SUPER CALCULADORA|************************ \n");
 		printf("|---------------------------------------------------------------| \n");
