@@ -36,11 +36,9 @@ int main(void)
 							case 1:
 								
 								system("cls");
-								printf("Cuantos empleados queres cargar?(Maximo 5) \n");
-								scanf("%d", &j);
 						
 								// Carga de datos
-								for(i = 0; i < j; i++)
+								for(i = 0; i < 5; i++)
 									{
 										printf("------------------------------- \n");
 										printf("Ingrese el nro de legajo: \n");
