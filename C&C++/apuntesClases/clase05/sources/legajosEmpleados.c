@@ -59,7 +59,7 @@ int main(void)
 								printf("Introduzca el numero de legajo: \n");
 								scanf("%d", &nroLegajo);
 			
-								if(nroLegajo = legajos[0])
+								if(nroLegajo == legajos[0])
 									{
 										printf("=========================== \n");
 										printf(" \n");
@@ -67,7 +67,7 @@ int main(void)
 										printf("DNI-Empleado: %d\n", documentos[0]);
 										printf("Sueldo: %d\n", sueldo[0]);
 									}
-								if(nroLegajo = legajos[1])
+								if(nroLegajo == legajos[1])
 									{
 										printf("=========================== \n");
 										printf(" \n");
@@ -75,7 +75,7 @@ int main(void)
 										printf("DNI-Empleado: %d\n", documentos[1]);
 										printf("Sueldo: %d\n", sueldo[1]);
 									}
-								if(nroLegajo = legajos[2])
+								if(nroLegajo == legajos[2])
 									{
 										printf("=========================== \n");
 										printf(" \n");
@@ -83,7 +83,7 @@ int main(void)
 										printf("DNI-Empleado: %d\n", documentos[2]);
 										printf("Sueldo: %d\n", sueldo[2]);
 									}
-								if(nroLegajo = legajos[3])
+								if(nroLegajo == legajos[3])
 									{
 										printf("=========================== \n");
 										printf(" \n");
@@ -91,7 +91,7 @@ int main(void)
 										printf("DNI-Empleado: %d\n", documentos[3]);
 										printf("Sueldo: %d\n", sueldo[3]);
 									}
-								if(nroLegajo = legajos[4])
+								if(nroLegajo == legajos[4])
 									{
 										printf("=========================== \n");
 										printf(" \n");
@@ -111,8 +111,6 @@ int main(void)
 				scanf("%d", &volverAlMenu);
 						
 			}while(volverAlMenu < 2);
-		
-		
 		
 		system("pause");
 		return 0;
