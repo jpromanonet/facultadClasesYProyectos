@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <conio.h>
 
-// Defining variables
+// Defining global variables
 int legajos[5];
 int documentos[5];
 int sueldo[5];
@@ -12,8 +12,7 @@ int main(void)
 
 		// Local scope
 		
-		int i; // Indice primer FOR
-		int j; // Indice de comparacion
+		int i; // Indice de comparacion
 		int nroLegajo; // Nro de legajo a buscar
 		int opcion; // Opcion del menu
 		int volverAlMenu = 1; // Opcion de volver al menu
