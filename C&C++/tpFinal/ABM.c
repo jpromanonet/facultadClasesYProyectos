@@ -289,6 +289,7 @@ void modifEmpleados(){
     FILE *pf,*pfaux;
     Empleados empleado;
     int documento;
+    int opcionModifica;
     pf = fopen("listaEmpleados.dat","rb");
     pfaux = fopen("listaEmpleadosAux.dat","ab");
     printf("Buscar DNI: ");
@@ -299,6 +300,38 @@ void modifEmpleados(){
                     fseek(pfaux,0l,SEEK_END);
                     fwrite(&empleado,sizeof(Empleados),1,pfaux);
                 }else{
+                	printf("---------------------------------------------------------\n");
+        printf("---------------------------------------------------------\n");
+        printf("                          1) Alta                       |\n");
+        printf("                          2) Baja                       |\n");
+        printf("                          3) Modificación               |\n");
+        printf("                          4) Listado                    |\n");
+        printf("                          5) Menu                       |\n");
+        printf("---------------------------------------------------------\n");
+        printf("---------------------------------------------------------\n");
+        printf("Seleccione una opcion: ");
+		scanf("%d",&opcion2);
+        system("cls");
+            switch (opcion){
+            	case 1:
+                        switch(opcion2){
+                            case 1:
+                                altaEmpleados();
+                                break;
+							case 2:
+                                bajaEmpleados();
+                                break;
+                            case 3:
+                                modifEmpleados();
+                                break;
+                            case 4:
+                                listadoEmpleados();
+                                break;
+							case 5:
+                                menu();
+                                break;
+                        }
+                    break;
                     printf("Ingrese Nueva Calle: ");
                     scanf("%s",empleado.direccion);
                     printf("Numero de Calle: ");
