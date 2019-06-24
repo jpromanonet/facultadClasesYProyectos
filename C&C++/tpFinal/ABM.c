@@ -1,3 +1,17 @@
+//*********************************************************
+//Fecha: 27/06/2019                                       *
+//Autor: Juan P. Romano                                   *
+//Mail: programming@jpromano.net                          *
+//--------------------------------------------------------*
+//Materia: Programacion C                                 *
+//Universidad Nacional de Lomas de Zamora                 *
+//--------------------------------------------------------*
+//Consigna: ABM de Empleados(agregue extras)              *
+//que guarde los datos en un archivo y los lea            *
+//cuando sea solicitado, utilizando matrices, vectores    *
+//y todo lo visto en clase, asi como los manuales de C    *
+//*********************************************************
+/*----------------------------------------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
