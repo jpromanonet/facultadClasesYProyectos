@@ -226,11 +226,9 @@ void menu(){
 							case 2:
                                 bajaProveedor();
                                 break;
-                            /*
                             case 3:
                                 modifProveedor();
                                 break;
-                            */
                             case 4:
                                 listadoProveedor();
                                 break;
@@ -753,7 +751,7 @@ void listadoProducto(){
     	printf("Codigo de Producto: %d\n", prod.codigoProducto);
     	printf("*************************************\n");
     	printf("=========DESCRIPCION========\n");
-        printf("Razon Social: %s\n", prod.nombreProducto);
+        printf("Nombre: %s\n", prod.nombreProducto);
         printf("========PRECIO Y STOCK======\n");
 		printf("Precio: %d", prod.precio);
         printf(" %s\n", prod.moneda);
@@ -928,15 +926,21 @@ void listadoProveedor(){
     	// Ficha de Proveedor
     	system("color 0a");
     	printf("*************************************\n");
-    	printf("Codigo de Producto: %d\n", prod.codigoProducto);
-    	printf("*************************************\n");
-    	printf("=========DESCRIPCION========\n");
-        printf("Razon Social: %s\n", prod.nombreProducto);
-        printf("========PRECIO Y STOCK======\n");
-		printf("Precio: %d", prod.precio);
-        printf(" %s\n", prod.moneda);
+    	printf("CUIT: %d\n", prov.cuit);
         printf("----------------------------\n");
-        printf("Stock: %d\n", prod.stock);
+        printf("Rubro: %s\n", prov.rubro);
+    	printf("*************************************\n");
+    	printf("=========DATOS CONTACTO========\n");
+        printf("Razon Social: %s\n", prov.razonSocial);
+        printf("----------------------------\n");
+        printf("E-mail: %s\n", prov.email);
+        printf("Telefono: %d\n", prov.telefono);
+        printf("E-mail: %s", prov.direccion);
+        printf(" %d\n", prov.direccionNumero);
+        printf("==============FECHA============\n");
+		printf("Fecha Alta: %d", prov.diaAlta);
+		printf("/%d", prov.mesAlta);
+		printf("/%d\n", prov.anioAlta);
         printf("*************************************\n");
         printf("\n");
         fread(&prov,sizeof(Proveedor),1,pf);
@@ -946,4 +950,82 @@ void listadoProveedor(){
     // Presiona para continuar  
 	system("pause"); 
 	system("cls");
+}
+
+//// Modificacion de proveedores guardados en listaProveedores.dat, por valor, es decir parametro a cambiar.
+void modifProveedor(){
+    FILE *pf,*pfaux;
+    Proveedor prov;
+    int provModifica;
+    int opcionValorProv;
+    pf = fopen("listaProveedores.dat","rb");
+    pfaux = fopen("listaProveedoresAux.dat","ab");
+    printf("Buscar por CUIT: ");
+    scanf("%d",&provModifica);
+    fread(&prov,sizeof(Proveedor),1,pf);
+        while (!feof(pf)){
+                if (prov.cuit != provModifica){
+                    fseek(pfaux,0l,SEEK_END);
+                    fwrite(&prov,sizeof(Proveedor),1,pfaux);
+                }else{
+                	// Sun menu para seleccionar el valor a modificar de la ficha de empleado.
+                	printf("*********************************************************\n");
+    				printf("**                    MODIFICAR PROVEEDOR              **\n");
+    				printf("*********************************************************\n");
+        			printf("---------------------------------------------------------\n");
+        			printf("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+                	printf("---------------------------------------------------------\n");
+                    printf("---------------------------------------------------------\n");
+                    printf("                          1) Razon Social               |\n");
+                    printf("                          2) Telefono                   |\n");
+                    printf("                          3) E-mail                     |\n");
+                    printf("                          4) Direccion                  |\n");
+                    printf("                          5) Rubro                      |\n");
+                    printf("---------------------------------------------------------\n");
+                    printf("---------------------------------------------------------\n");
+                    printf("Seleccione una opcion: ");
+		            scanf("%d",&opcionValorProv);
+                        switch (opcionValorProv){
+                        	case 1:
+                        		printf("---------------------------------------------------------\n");
+                               	printf("Ingrese Razon Social: ");
+                                scanf("%s", prov.razonSocial);
+								system("cls");
+								break;
+							case 2:
+								printf("---------------------------------------------------------\n");
+								printf("Nuevo Telefono: ");
+                                scanf("%d", &prov.telefono);
+								system("cls");
+								break;
+							case 3:
+								printf("---------------------------------------------------------\n");
+								printf("Nuevo E-mail: ");
+                                scanf("%s", prov.email);
+								system("cls");
+								break;
+							case 4:
+								printf("---------------------------------------------------------\n");
+								printf("Nueva calle: ");
+                                scanf("%s", prov.direccion);
+                                printf("Altura: ");
+                                scanf("%d", &prov.direccionNumero);
+								system("cls");
+								break;
+							case 5:
+								printf("---------------------------------------------------------\n");
+								printf("Nuevo Rubro: ");
+                                scanf("%s", prov.rubro);
+								system("cls");
+								break;
+                        }
+                    fseek(pfaux,0l,SEEK_END);
+                    fwrite(&prov,sizeof(Proveedor),1,pfaux);
+                }
+            fread(&prov,sizeof(Proveedor),1,pf);
+        }
+    fclose(pf);
+    fclose(pfaux);
+    remove("listaProveedores.dat");
+    rename("listaProveedoresAux.dat","listaProveedores.dat");
 }
