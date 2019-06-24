@@ -138,11 +138,9 @@ void menu(){
 							case 2:
                                 bajaPresupuesto();
                                 break;
-                            /*
                             case 3:
                                 modifPresupuesto();
                                 break;
-                            */
                             case 4:
                                 listadoPresupuesto();
                                 break;
@@ -405,8 +403,8 @@ void modifEmpleados(){
 								printf("---------------------------------------------------------\n");
 								printf("Ingrese Nuevo E-mail: ");
                                 scanf("%s",empleado.email);
-								break;
 								system("cls");
+								break;
 							case 5:
 								printf("---------------------------------------------------------\n");
 							 	printf("Ingrese Nuevo Telefono: ");
@@ -538,4 +536,75 @@ void listadoPresupuesto(){
     // Presiona para continuar  
 	system("pause"); 
 	system("cls");
+}
+
+//// Modificacion de presupuestos guardados en listaPresupuestos.dat, por valor, es decir parametro a cambiar.
+void modifPresupuesto(){
+    FILE *pf,*pfaux;
+    Presupuesto pres;
+    int presModifica;
+    int opcionModifica;
+    pf = fopen("listaPresupuestos.dat","rb");
+    pfaux = fopen("listaPresupuestosAux.dat","ab");
+    printf("Buscar Codigo Presupuesto: ");
+    scanf("%d",&presModifica);
+    fread(&pres,sizeof(Presupuesto),1,pf);
+        while (!feof(pf)){
+                if (pres.codigoPresupuesto != presModifica){
+                    fseek(pfaux,0l,SEEK_END);
+                    fwrite(&pres,sizeof(Presupuesto),1,pfaux);
+                }else{
+                	// Sun menu para seleccionar el valor a modificar de la ficha de empleado.
+                	printf("*********************************************************\n");
+    				printf("**                    MODIFICAR PRESUPUESTO            **\n");
+    				printf("*********************************************************\n");
+        			printf("---------------------------------------------------------\n");
+        			printf("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+                	printf("---------------------------------------------------------\n");
+                    printf("---------------------------------------------------------\n");
+                    printf("                          1) Valor                      |\n");
+                    printf("                          2) Email                      |\n");
+                    printf("                          3) Descripcion                |\n");
+                    printf("                          4) Razon Social               |\n");
+                    printf("---------------------------------------------------------\n");
+                    printf("---------------------------------------------------------\n");
+                    printf("Seleccione una opcion: ");
+		            scanf("%d",&opcionModifica);
+                        switch (opcionModifica){
+                        	case 1:
+                        		printf("---------------------------------------------------------\n");
+                               	printf("Ingrese Nuevo Precio: ");
+                                scanf("%d",&pres.precioPresupuesto);
+                                printf("Ingrese Moneda: ");
+                                scanf("%s",pres.moneda);
+								system("cls");
+								break;
+							case 2:
+								printf("---------------------------------------------------------\n");
+								printf("Nuevo E-mail: ");
+                                scanf("%s",pres.emailPresu);
+								system("cls");
+								break;
+							case 3:
+								printf("---------------------------------------------------------\n");
+								printf("Ingrese Nueva Descripcion: ");
+                                scanf("%s",pres.descripcion);
+								system("cls");
+								break;
+							case 4:
+								printf("---------------------------------------------------------\n");
+								printf("Ingrese Razon Social: ");
+                                scanf("%s",pres.razonSocial);
+								system("cls");
+								break;
+                        }
+                    fseek(pfaux,0l,SEEK_END);
+                    fwrite(&pres,sizeof(Presupuesto),1,pfaux);
+                }
+            fread(&pres,sizeof(Presupuesto),1,pf);
+        }
+    fclose(pf);
+    fclose(pfaux);
+    remove("listaPresupuestos.dat");
+    rename("listaPresupuestosAux.dat","listaPresupuestos.dat");
 }
