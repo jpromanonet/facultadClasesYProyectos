@@ -26,6 +26,7 @@ typedef struct{
 
 //// Defino puntero de Presupuestos
 typedef struct{
+	int  codigoPresupuesto;
 	char razonSocial[250];
 	int  diaPresupuesto;
 	int  mesPresupuesto;
@@ -54,6 +55,10 @@ int main(){
     menu();
     return 0;
 }
+
+/*----------------------------------------------------------------------------------------------------------*/
+
+// Menu y submenues
 
 void menu(){
 	// Color pantalla
@@ -127,10 +132,10 @@ void menu(){
                             case 1:
                                 altaPresupuesto();
                                 break;
-                            /*
 							case 2:
                                 bajaPresupuesto();
                                 break;
+                            /*
                             case 3:
                                 modifPresupuesto();
                                 break;
@@ -209,6 +214,8 @@ void menu(){
             }
     }while (opcion!=9);
 }
+
+/*----------------------------------------------------------------------------------------------------------*/
 
 // ABM Empleados
 
@@ -414,6 +421,8 @@ void modifEmpleados(){
     rename("listaEmpleadosAux.dat","listaEmpleados.dat");
 }
 
+/*----------------------------------------------------------------------------------------------------------*/
+
 // ABM Presupuestos
 
 //// Alta de empleados que se guardan en listaEmpleados.dat
@@ -421,6 +430,8 @@ void altaPresupuesto(){
     FILE *pf;
     Presupuesto pres;
     pf = fopen("listaPresupuestos.dat","ab");
+    printf("Ingrese codigo de presupuesto (Hasta 8 digitos): ");
+    scanf("%d", &pres.codigoPresupuesto);
     printf("Ingrese Razon Social: ");
     scanf("%s", pres.razonSocial);
     printf("Ingrese descripcion: ");
@@ -455,4 +466,38 @@ void altaPresupuesto(){
     // Limpia pantalla y vuelve al menu
 	system("cls");
     menu();
+}
+
+//// Baja de presupuestos guardados en listaPresupuestos.dat por Codigo de Presupuesto
+void bajaPresupuesto(){
+    FILE *pf,*pfaux;
+    Presupuesto pres;
+    int codigoBaja;
+    pf = fopen("listaPresupuestos.dat","rb");
+    pfaux = fopen("listaPresupuestosAux.dat","ab");
+    printf("Ingrese Codigo de Presupuesto \n");
+    scanf("%d",&codigoBaja);
+    fread(&pres,sizeof(Presupuesto),1,pf);
+        while (!feof(pf)){
+                if (pres.codigoPresupuesto != codigoBaja){
+                    fseek(pfaux,0l,SEEK_END);
+                    fwrite(&pres,sizeof(Presupuesto),1,pfaux);
+                }
+            fread(&pres,sizeof(Presupuesto),1,pf);
+        }
+    fclose(pf);
+    fclose(pfaux);
+    remove("listaPresupuestos.dat");
+    rename("listaPresupuestosAux.dat","listaPresupuestos.dat");
+    
+    // Mensaje de baja
+    printf("\n");
+    printf("***********************************\n");
+    printf("PRESUPUESTO DADO DE BAJA\n");
+    printf("***********************************\n");
+    printf("\n");
+    
+    // Presiona para continuar  
+	system("pause"); 
+	system("cls");
 }
