@@ -21,7 +21,7 @@ void menu();
 
 // Punteros
 
-//// Defino puntero de Empleado
+//// Defino estructura de Empleado
 typedef struct{
     char nombre[250];
     char apellido[250];
@@ -38,7 +38,7 @@ typedef struct{
     int  direccionNumero;
 }Empleados;
 
-//// Defino puntero de Presupuestos
+//// Defino estructura de Presupuestos
 typedef struct{
 	int  codigoPresupuesto;
 	char razonSocial[250];
@@ -51,7 +51,7 @@ typedef struct{
 	char emailPresu[250];
 }Presupuesto;
 
-//// Defino puntero de Productos
+//// Defino estructura de Productos
 typedef struct{
 	int  codigoProducto;
 	char nombreProducto[250];
@@ -60,7 +60,7 @@ typedef struct{
 	char moneda[3];
 }Producto;
 
-//// Defino puntero de Proveedor
+//// Defino estructura de Proveedor
 typedef struct{
     char razonSocial[250];
     int  cuit;
@@ -74,7 +74,7 @@ typedef struct{
     char rubro[250];
 }Proveedor;
 
-// Funciones relacionales a los punteros previamente definidos
+// Funciones relacionales a las estructuras previamente definidas
 
 //// Funciones de Empleados
 void altaEmpleados();
