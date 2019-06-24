@@ -71,7 +71,7 @@ void menu(){
         printf("---------------------------------------------------------\n");
         printf("                          1) Alta                       |\n");
         printf("                          2) Baja                       |\n");
-        printf("                          3) Modificaci�n               |\n");
+        printf("                          3) Modificacion               |\n");
         printf("                          4) Listado                    |\n");
         printf("                          5) Menu                       |\n");
         printf("---------------------------------------------------------\n");
@@ -177,12 +177,12 @@ void menu(){
                         }
                         */
                     break;
-                case 6:
+                case 9:
                 	system("exit");
                     break;
 
             }
-    }while (opcion!=6);
+    }while (opcion!=9);
 }
 
 // ABM Empleados
@@ -221,9 +221,20 @@ void altaEmpleados(){
     fseek(pf,0L,SEEK_END);
     fwrite(&empleado,sizeof(Empleados),1,pf);
     fclose(pf);
-    printf("EMPLEADO CARGADO CON EXITO!");
-    system("sleep 5");
-    system("cls");
+    
+    // Mensaje de exito
+    printf("\n");
+    printf("***********************************\n");
+    printf("EMPLEADO CARGADO CON EXITO!\n");
+    printf("***********************************\n");
+    printf("\n");
+	        
+    // Presiona para continuar  
+	system("pause"); 
+	system("cls");
+    
+    // Limpia pantalla y vuelve al menu
+	system("cls");
     menu();
 }
 
@@ -248,6 +259,17 @@ void bajaEmpleados(){
     fclose(pfaux);
     remove("listaEmpleados.dat");
     rename("listaEmpleadosAux.dat","listaEmpleados.dat");
+    
+    // Mensaje de baja
+    printf("\n");
+    printf("***********************************\n");
+    printf("EMPLEADO DADO DE BAJA\n");
+    printf("***********************************\n");
+    printf("\n");
+    
+    // Presiona para continuar  
+	system("pause"); 
+	system("cls");
 }
 
 //// Lista de empleados guardados en listaEmpleados.dat, listado general.
@@ -257,6 +279,7 @@ void listadoEmpleados(){
     pf = fopen("listaEmpleados.dat","rb");
     fread(&empleado,sizeof(Empleados),1,pf);
     while(!feof(pf)){
+    	// Ficha de empleado
     	system("color 0a");
     	printf("*************************************\n");
     	printf("Numero de empleado: %d\n", empleado.nroEmpleado);
@@ -282,6 +305,10 @@ void listadoEmpleados(){
         fread(&empleado,sizeof(Empleados),1,pf);
     }
     fclose(pf);
+    
+    // Presiona para continuar  
+	system("pause"); 
+	system("cls");
 }
 
 //// Modificacion de Empleados guardados en listaEmpleados.dat, por valor, es decir parametro a cambiar.
@@ -300,6 +327,7 @@ void modifEmpleados(){
                     fseek(pfaux,0l,SEEK_END);
                     fwrite(&empleado,sizeof(Empleados),1,pfaux);
                 }else{
+                	// Sun menu para seleccionar el valor a modificar de la ficha de empleado.
                 	printf("*********************************************************\n");
     				printf("**                    MODIFICAR EMPLEADO               **\n");
     				printf("*********************************************************\n");
