@@ -68,6 +68,7 @@ void menu(){
     int opcion;
 	int opcion2;
     do{
+        // Menu Principal
     	printf("********************************************************\n");
     	printf("**                 ABM - TP FINAL - UNLZ              **\n");
     	printf("********************************************************\n");
@@ -94,6 +95,8 @@ void menu(){
         printf("Seleccione una opcion: ");
         scanf("%d",&opcion);
         system("cls");
+
+        // Submenu ABM
         printf("--------------------------------------------------------\n");
         printf("--------------------------------------------------------\n");
         printf("                          1) Alta                      |\n");
