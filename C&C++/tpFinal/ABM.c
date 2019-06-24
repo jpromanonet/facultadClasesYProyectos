@@ -122,13 +122,11 @@ void menu(){
         printf("                          4) Proveedores               |\n");
         printf("                          5) Clientes                  |\n");
         printf("========================================================\n");
-        printf("                          6) Facturas                  |\n");
+        printf("                          6) Manuales                  |\n");
         printf("========================================================\n");
-        printf("                          7) Manuales                  |\n");
+        printf("                          7) Licencia                  |\n");
         printf("========================================================\n");
-        printf("                          8) Licencia                  |\n");
-        printf("========================================================\n");
-        printf("                          9) Salir                     |\n");
+        printf("                          8) Salir                     |\n");
         printf("--------------------------------------------------------\n");
         printf("Seleccione una opcion: ");
         scanf("%d",&opcion);
@@ -211,10 +209,10 @@ void menu(){
                             case 1:
                                 altaProveedor();
                                 break;
-                            /*
 							case 2:
                                 bajaProveedor();
                                 break;
+                            /*
                             case 3:
                                 modifProveedor();
                                 break;
@@ -253,7 +251,7 @@ void menu(){
                     break;
 
             }
-    }while (opcion!=9);
+    }while (opcion!=8);
 }
 
 /*----------------------------------------------------------------------------------------------------------*/
@@ -870,4 +868,38 @@ void altaProveedor(){
     // Limpia pantalla y vuelve al menu
 	system("cls");
     menu();
+}
+
+//// Baja de proveedor guardados en listaProveedores.dat por CUIT de proveedor
+void bajaProveedor(){
+    FILE *pf,*pfaux;
+    Proveedor prov;
+    int cuitProveedor;
+    pf = fopen("listaProveedores.dat","rb");
+    pfaux = fopen("listaProveedoresAux.dat","ab");
+    printf("Ingrese CUIT: ");
+    scanf("%d", &cuitProveedor);
+    fread(&prov,sizeof(Proveedor),1,pf);
+        while (!feof(pf)){
+                if (prov.cuit != cuitProveedor){
+                    fseek(pfaux,0l,SEEK_END);
+                    fwrite(&prov,sizeof(Proveedor),1,pfaux);
+                }
+            fread(&prov,sizeof(Proveedor),1,pf);
+        }
+    fclose(pf);
+    fclose(pfaux);
+    remove("listaProveedores.dat");
+    rename("listaProveedoresAux.dat","listaProveedores.dat");
+    
+    // Mensaje de baja
+    printf("\n");
+    printf("***********************************\n");
+    printf("PROVEEDOR DADO DE BAJA\n");
+    printf("***********************************\n");
+    printf("\n");
+    
+    // Presiona para continuar  
+	system("pause"); 
+	system("cls");
 }
