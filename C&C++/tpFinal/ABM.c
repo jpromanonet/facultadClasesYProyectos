@@ -15,6 +15,7 @@ typedef struct{
     char email[250];
     int  telefono;
     int  sueldo;
+    char obraSocial[50];
     int  nroEmpleado;
     char direccion[250];
     int  direccionNumero;
@@ -213,6 +214,8 @@ void altaEmpleados(){
     scanf("%d", &empleado.direccionNumero);  
     printf("Ingrese Sueldo a percibir: ");
     scanf("%d", &empleado.sueldo);
+    printf("Ingrese Obra Social: ");
+    scanf("%s", empleado.obraSocial);
     printf("Ingrese Nro de Empleado: ");
     scanf("%d", &empleado.nroEmpleado);
     fseek(pf,0L,SEEK_END);
@@ -272,6 +275,8 @@ void listadoEmpleados(){
         printf(" %d\n", empleado.direccionNumero);
         printf("==============SUELDO=============\n");
         printf("Sueldo: %d\n", empleado.sueldo);
+        printf("==============BENEFICIOS=========\n");
+        printf("Obra Social: %s\n", empleado.obraSocial);
         printf("*************************************\n");
         printf("\n");
         fread(&empleado,sizeof(Empleados),1,pf);
