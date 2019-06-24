@@ -37,6 +37,15 @@ typedef struct{
 	char emailPresu[250];
 }Presupuesto;
 
+//// Defino puntero de Productos
+typedef struct{
+	char codigoProducto[20];
+	char nombreProducto[250];
+	int  stock;
+	int  precio;
+	char moneda[3];
+}Producto;
+
 // Funciones relacionales a los punteros previamente definidos
 
 //// Funciones de Empleados
@@ -51,6 +60,15 @@ void bajaPresupuesto();
 void modifPresupuesto();
 void listadoPresupuesto();
 
+//// Funciones de Productos
+void altaProducto();
+void bajaProducto();
+void modifProducto();
+void listadoProducto();
+
+/*----------------------------------------------------------------------------------------------------------*/
+
+// Funcion principal que llama al Menu
 int main(){
     menu();
     return 0;
@@ -149,12 +167,12 @@ void menu(){
                                 break;
                         }
                     break;
-                /*
                 case 3:
                         switch(opcion2){
                             case 1:
-                                AltaProds();
+                                altaProducto();
                                 break;
+                            /*
                             case 2:
                                 BajaProds();
                                 break;
@@ -164,11 +182,13 @@ void menu(){
                             case 4:
                                 ListadoProds();
                                 break;
+                            */
                             case 5:
                                 menu();
                                 break;
                         }
                     break;
+                /*
                 case 4:
                         switch(opcion2){
                             case 1:
@@ -263,8 +283,7 @@ void altaEmpleados(){
     printf("\n");
 	        
     // Presiona para continuar  
-	system("pause"); 
-	system("cls");
+	system("pause");
     
     // Limpia pantalla y vuelve al menu
 	system("cls");
@@ -462,8 +481,7 @@ void altaPresupuesto(){
     printf("\n");
 	        
     // Presiona para continuar  
-	system("pause"); 
-	system("cls");
+	system("pause");
     
     // Limpia pantalla y vuelve al menu
 	system("cls");
@@ -607,4 +625,42 @@ void modifPresupuesto(){
     fclose(pfaux);
     remove("listaPresupuestos.dat");
     rename("listaPresupuestosAux.dat","listaPresupuestos.dat");
+}
+
+/*----------------------------------------------------------------------------------------------------------*/
+
+// ABM Productos
+
+//// Alta de productos que se guardan en listaProductos.dat
+void altaProducto(){
+    FILE *pf;
+    Producto prod;
+    pf = fopen("listaProductos.dat","ab");
+    printf("Ingrese codigo de nuevo producto (PRD-Numero): ");
+    scanf("%s", prod.codigoProducto);
+    printf("Ingrese nombre: ");
+    scanf("%s", prod.nombreProducto);
+    printf("Ingrese Precio: ");
+    scanf("%d", &prod.precio);
+    printf("Ingrese moneda: ");
+    scanf("%s", prod.moneda);
+    printf("Ingrese stock (cantidad): ");
+    scanf("%d", &prod.stock);
+    fseek(pf,0L,SEEK_END);
+    fwrite(&prod,sizeof(Producto),1,pf);
+    fclose(pf);
+    
+    // Mensaje de exito
+    printf("\n");
+    printf("***********************************\n");
+    printf("PRODUCTO GENERADO CON EXITO!\n");
+    printf("***********************************\n");
+    printf("\n");
+	        
+    // Presiona para continuar  
+	system("pause");
+    
+    // Limpia pantalla y vuelve al menu
+	system("cls");
+    menu();
 }
