@@ -139,10 +139,10 @@ void menu(){
                             case 3:
                                 modifPresupuesto();
                                 break;
+                            */
                             case 4:
                                 listadoPresupuesto();
                                 break;
-                            */
 							case 5:
                                 menu();
                                 break;
@@ -315,6 +315,7 @@ void listadoEmpleados(){
     	system("color 0a");
     	printf("*************************************\n");
     	printf("Numero de empleado: %d\n", empleado.nroEmpleado);
+    	printf("*************************************\n");
     	printf("=========DATOS PERSONALES========\n");
         printf("Nombre: %s\n", empleado.nombre);
         printf("Apellido: %s\n", empleado.apellido);
@@ -496,6 +497,40 @@ void bajaPresupuesto(){
     printf("PRESUPUESTO DADO DE BAJA\n");
     printf("***********************************\n");
     printf("\n");
+    
+    // Presiona para continuar  
+	system("pause"); 
+	system("cls");
+}
+
+//// Lista de presupuestos guardados en listaPresupuestos.dat, listado general.
+void listadoPresupuesto(){
+    FILE *pf;
+    Presupuesto pres;
+    pf = fopen("listaPresupuestos.dat","rb");
+    fread(&pres,sizeof(Presupuesto),1,pf);
+    while(!feof(pf)){
+    	// Ficha de empleado
+    	system("color 0a");
+    	printf("*************************************\n");
+    	printf("Codigo de Presupuesto: %d\n", pres.codigoPresupuesto);
+    	printf("*************************************\n");
+    	printf("=========DATOS SOLICITANTE========\n");
+        printf("Razon Social: %s\n", pres.razonSocial);
+        printf("Descripcion: %s\n", pres.descripcion);
+        printf("Mail Contacto: %s\n", pres.emailPresu);
+        printf("------------------------------------\n");
+        printf("Precio: %d", pres.precioPresupuesto);
+        printf(" %s\n", pres.moneda);
+        printf("===============FECHA==============\n");
+        printf("Fecha de emision: %d", pres.diaPresupuesto);
+		printf("/%d", pres.mesPresupuesto);  
+		printf("/%d\n", pres.anioPresupuesto); 
+        printf("*************************************\n");
+        printf("\n");
+        fread(&pres,sizeof(Presupuesto),1,pf);
+    }
+    fclose(pf);
     
     // Presiona para continuar  
 	system("pause"); 
