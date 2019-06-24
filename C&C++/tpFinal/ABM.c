@@ -39,7 +39,7 @@ typedef struct{
 
 //// Defino puntero de Productos
 typedef struct{
-	char codigoProducto[20];
+	int  codigoProducto;
 	char nombreProducto[250];
 	int  stock;
 	int  precio;
@@ -172,17 +172,15 @@ void menu(){
                             case 1:
                                 altaProducto();
                                 break;
-                            /*
                             case 2:
-                                BajaProds();
+                                bajaProducto();
                                 break;
                             case 3:
-                                ModifProds();
+                                modifProducto();
                                 break;
                             case 4:
-                                ListadoProds();
+                                listadoProducto();
                                 break;
-                            */
                             case 5:
                                 menu();
                                 break;
@@ -529,7 +527,7 @@ void listadoPresupuesto(){
     pf = fopen("listaPresupuestos.dat","rb");
     fread(&pres,sizeof(Presupuesto),1,pf);
     while(!feof(pf)){
-    	// Ficha de empleado
+    	// Ficha de Presupuesto
     	system("color 0a");
     	printf("*************************************\n");
     	printf("Codigo de Presupuesto: %d\n", pres.codigoPresupuesto);
@@ -636,8 +634,8 @@ void altaProducto(){
     FILE *pf;
     Producto prod;
     pf = fopen("listaProductos.dat","ab");
-    printf("Ingrese codigo de nuevo producto (PRD-Numero): ");
-    scanf("%s", prod.codigoProducto);
+    printf("Ingrese codigo de nuevo producto (Numero): ");
+    scanf("%d", &prod.codigoProducto);
     printf("Ingrese nombre: ");
     scanf("%s", prod.nombreProducto);
     printf("Ingrese Precio: ");
@@ -663,4 +661,132 @@ void altaProducto(){
     // Limpia pantalla y vuelve al menu
 	system("cls");
     menu();
+}
+
+//// Baja de productos guardados en listaProductos.dat por Codigo de Producto
+void bajaProducto(){
+    FILE *pf,*pfaux;
+    Producto prod;
+    int codigoProductoBaja;
+    pf = fopen("listaProductos.dat","rb");
+    pfaux = fopen("listaProductosAux.dat","ab");
+    printf("Ingrese Codigo de Producto: ");
+    scanf("%d", &codigoProductoBaja);
+    fread(&prod,sizeof(Producto),1,pf);
+        while (!feof(pf)){
+                if (prod.codigoProducto != codigoProductoBaja){
+                    fseek(pfaux,0l,SEEK_END);
+                    fwrite(&prod,sizeof(Producto),1,pfaux);
+                }
+            fread(&prod,sizeof(Producto),1,pf);
+        }
+    fclose(pf);
+    fclose(pfaux);
+    remove("listaProductos.dat");
+    rename("listaProductosAux.dat","listaProductos.dat");
+    
+    // Mensaje de baja
+    printf("\n");
+    printf("***********************************\n");
+    printf("PRODUCTO DADO DE BAJA\n");
+    printf("***********************************\n");
+    printf("\n");
+    
+    // Presiona para continuar  
+	system("pause"); 
+	system("cls");
+}
+
+//// Lista de productos guardados en listaProductos.dat, listado general.
+void listadoProducto(){
+    FILE *pf;
+    Producto prod;
+    pf = fopen("listaProductos.dat","rb");
+    fread(&prod,sizeof(Producto),1,pf);
+    while(!feof(pf)){
+    	// Ficha de Producto
+    	system("color 0a");
+    	printf("*************************************\n");
+    	printf("Codigo de Producto: %d\n", prod.codigoProducto);
+    	printf("*************************************\n");
+    	printf("=========DESCRIPCION========\n");
+        printf("Razon Social: %s\n", prod.nombreProducto);
+        printf("========PRECIO Y STOCK======\n");
+		printf("Precio: %d", prod.precio);
+        printf(" %s\n", prod.moneda);
+        printf("----------------------------\n");
+        printf("Stock: %d\n", prod.stock);
+        printf("*************************************\n");
+        printf("\n");
+        fread(&prod,sizeof(Producto),1,pf);
+    }
+    fclose(pf);
+    
+    // Presiona para continuar  
+	system("pause"); 
+	system("cls");
+}
+
+//// Modificacion de productos guardados en listaProductos.dat, por valor, es decir parametro a cambiar.
+void modifProducto(){
+    FILE *pf,*pfaux;
+    Producto prod;
+    int prodModifica;
+    int opcionValorProd;
+    pf = fopen("listaProductos.dat","rb");
+    pfaux = fopen("listaProductosAux.dat","ab");
+    printf("Buscar Codigo de Producto: ");
+    scanf("%d",&prodModifica);
+    fread(&prod,sizeof(Producto),1,pf);
+        while (!feof(pf)){
+                if (prod.codigoProducto != prodModifica){
+                    fseek(pfaux,0l,SEEK_END);
+                    fwrite(&prod,sizeof(Producto),1,pfaux);
+                }else{
+                	// Sun menu para seleccionar el valor a modificar de la ficha de empleado.
+                	printf("*********************************************************\n");
+    				printf("**                    MODIFICAR PRODUCTO               **\n");
+    				printf("*********************************************************\n");
+        			printf("---------------------------------------------------------\n");
+        			printf("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+                	printf("---------------------------------------------------------\n");
+                    printf("---------------------------------------------------------\n");
+                    printf("                          1) Valor                      |\n");
+                    printf("                          2) Nombre                     |\n");
+                    printf("                          3) Stock                      |\n");
+                    printf("---------------------------------------------------------\n");
+                    printf("---------------------------------------------------------\n");
+                    printf("Seleccione una opcion: ");
+		            scanf("%d",&opcionValorProd);
+                        switch (opcionValorProd){
+                        	case 1:
+                        		printf("---------------------------------------------------------\n");
+                               	printf("Ingrese Nuevo Precio: ");
+                                scanf("%d",&prod.precio);
+                                printf("Ingrese Moneda: ");
+                                scanf("%s",prod.moneda);
+								system("cls");
+								break;
+							case 2:
+								printf("---------------------------------------------------------\n");
+								printf("Nuevo Nombre: ");
+                                scanf("%s",prod.nombreProducto);
+								system("cls");
+								break;
+							case 3:
+								printf("---------------------------------------------------------\n");
+								printf("Ingrese stock: ");
+                                scanf("%s",prod.stock);
+								system("cls");
+								break;
+                        }
+                    fseek(pfaux,0l,SEEK_END);
+                    fwrite(&prod,sizeof(Producto),1,pfaux);
+                }
+            fread(&prod,sizeof(Producto),1,pf);
+        }
+    fclose(pf);
+    fclose(pfaux);
+    remove("listaProductos.dat");
+    rename("listaProductosAux.dat","listaProductos.dat");
 }
