@@ -71,7 +71,7 @@ void menu(){
         printf("---------------------------------------------------------\n");
         printf("                          1) Alta                       |\n");
         printf("                          2) Baja                       |\n");
-        printf("                          3) Modificación               |\n");
+        printf("                          3) Modificaciï¿½n               |\n");
         printf("                          4) Listado                    |\n");
         printf("                          5) Menu                       |\n");
         printf("---------------------------------------------------------\n");
@@ -301,46 +301,46 @@ void modifEmpleados(){
                     fwrite(&empleado,sizeof(Empleados),1,pfaux);
                 }else{
                 	printf("---------------------------------------------------------\n");
-        printf("---------------------------------------------------------\n");
-        printf("                          1) Alta                       |\n");
-        printf("                          2) Baja                       |\n");
-        printf("                          3) Modificación               |\n");
-        printf("                          4) Listado                    |\n");
-        printf("                          5) Menu                       |\n");
-        printf("---------------------------------------------------------\n");
-        printf("---------------------------------------------------------\n");
-        printf("Seleccione una opcion: ");
-		scanf("%d",&opcion2);
-        system("cls");
-            switch (opcion){
-            	case 1:
-                        switch(opcion2){
-                            case 1:
-                                altaEmpleados();
+                    printf("---------------------------------------------------------\n");
+                    printf("                          1) Alta                       |\n");
+                    printf("                          2) Baja                       |\n");
+                    printf("                          3) Modificaciï¿½n               |\n");
+                    printf("                          4) Listado                    |\n");
+                    printf("                          5) Menu                       |\n");
+                    printf("---------------------------------------------------------\n");
+                    printf("---------------------------------------------------------\n");
+                    printf("Seleccione una opcion: ");
+		            scanf("%d",&opcion2);
+                    system("cls");
+                        switch (opcion){
+                        	case 1:
+                                    switch(opcion2){
+                                        case 1:
+                                            altaEmpleados();
+                                            break;
+		            					case 2:
+                                            bajaEmpleados();
+                                            break;
+                                        case 3:
+                                            modifEmpleados();
+                                            break;
+                                        case 4:
+                                            listadoEmpleados();
+                                            break;
+		            					case 5:
+                                            menu();
+                                            break;
+                                    }
                                 break;
-							case 2:
-                                bajaEmpleados();
-                                break;
-                            case 3:
-                                modifEmpleados();
-                                break;
-                            case 4:
-                                listadoEmpleados();
-                                break;
-							case 5:
-                                menu();
-                                break;
-                        }
-                    break;
-                    printf("Ingrese Nueva Calle: ");
-                    scanf("%s",empleado.direccion);
-                    printf("Numero de Calle: ");
-                    scanf("%d",&empleado.direccionNumero);
-                    printf("Nuevo Sueldo o Actual: ");
-                    scanf("%d",&empleado.sueldo);
-                    fseek(pfaux,0l,SEEK_END);
-                    fwrite(&empleado,sizeof(Empleados),1,pfaux);
-                }
+                                printf("Ingrese Nueva Calle: ");
+                                scanf("%s",empleado.direccion);
+                                printf("Numero de Calle: ");
+                                scanf("%d",&empleado.direccionNumero);
+                                printf("Nuevo Sueldo o Actual: ");
+                                scanf("%d",&empleado.sueldo);
+                                fseek(pfaux,0l,SEEK_END);
+                                fwrite(&empleado,sizeof(Empleados),1,pfaux);
+                            }
             fread(&empleado,sizeof(Empleados),1,pf);
         }
     fclose(pf);
