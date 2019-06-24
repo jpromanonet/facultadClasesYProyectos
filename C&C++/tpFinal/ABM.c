@@ -300,47 +300,59 @@ void modifEmpleados(){
                     fseek(pfaux,0l,SEEK_END);
                     fwrite(&empleado,sizeof(Empleados),1,pfaux);
                 }else{
+                	printf("*********************************************************\n");
+    				printf("**                    MODIFICAR EMPLEADO               **\n");
+    				printf("*********************************************************\n");
+        			printf("---------------------------------------------------------\n");
+        			printf("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
                 	printf("---------------------------------------------------------\n");
                     printf("---------------------------------------------------------\n");
-                    printf("                          1) Alta                       |\n");
-                    printf("                          2) Baja                       |\n");
-                    printf("                          3) Modificaci�n               |\n");
-                    printf("                          4) Listado                    |\n");
-                    printf("                          5) Menu                       |\n");
+                    printf("                          1) Direccion                  |\n");
+                    printf("                          2) Sueldo                     |\n");
+                    printf("                          3) Obra Social                |\n");
+                    printf("                          4) E-mail                     |\n");
+                    printf("                          5) Telefono                   |\n");
                     printf("---------------------------------------------------------\n");
                     printf("---------------------------------------------------------\n");
                     printf("Seleccione una opcion: ");
-		            scanf("%d",&opcion2);
-                    system("cls");
-                        switch (opcion){
+		            scanf("%d",&opcionModifica);
+                        switch (opcionModifica){
                         	case 1:
-                                    switch(opcion2){
-                                        case 1:
-                                            altaEmpleados();
-                                            break;
-		            					case 2:
-                                            bajaEmpleados();
-                                            break;
-                                        case 3:
-                                            modifEmpleados();
-                                            break;
-                                        case 4:
-                                            listadoEmpleados();
-                                            break;
-		            					case 5:
-                                            menu();
-                                            break;
-                                    }
-                                break;
-                                printf("Ingrese Nueva Calle: ");
+                        		printf("---------------------------------------------------------\n");
+                               	printf("Ingrese Nueva Calle: ");
                                 scanf("%s",empleado.direccion);
                                 printf("Numero de Calle: ");
                                 scanf("%d",&empleado.direccionNumero);
-                                printf("Nuevo Sueldo o Actual: ");
+								system("cls");
+								break;
+							case 2:
+								printf("---------------------------------------------------------\n");
+								printf("Nuevo Sueldo o Actual: ");
                                 scanf("%d",&empleado.sueldo);
-                                fseek(pfaux,0l,SEEK_END);
-                                fwrite(&empleado,sizeof(Empleados),1,pfaux);
-                            }
+								system("cls");
+								break;
+							case 3:
+								printf("---------------------------------------------------------\n");
+								printf("Ingrese Nueva Obra Social: ");
+                                scanf("%s",empleado.obraSocial);
+								system("cls");
+								break;
+							case 4:
+								printf("---------------------------------------------------------\n");
+								printf("Ingrese Nuevo E-mail: ");
+                                scanf("%s",empleado.email);
+								break;
+								system("cls");
+							case 5:
+								printf("---------------------------------------------------------\n");
+							 	printf("Ingrese Nuevo Telefono: ");
+                                scanf("%d",empleado.telefono);
+                                system("cls");
+								break;
+                        }
+                    fseek(pfaux,0l,SEEK_END);
+                    fwrite(&empleado,sizeof(Empleados),1,pfaux);
+                }
             fread(&empleado,sizeof(Empleados),1,pf);
         }
     fclose(pf);
