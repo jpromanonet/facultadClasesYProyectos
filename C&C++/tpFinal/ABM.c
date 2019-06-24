@@ -230,10 +230,10 @@ void menu(){
                             case 3:
                                 modifProveedor();
                                 break;
+                            */
                             case 4:
                                 listadoProveedor();
                                 break;
-                            */
                             case 5:
                                 menu();
                                 break;
@@ -819,7 +819,7 @@ void modifProducto(){
 							case 3:
 								printf("---------------------------------------------------------\n");
 								printf("Ingrese stock: ");
-                                scanf("%s",prod.stock);
+                                scanf("%d", &prod.stock);
 								system("cls");
 								break;
                         }
@@ -912,6 +912,36 @@ void bajaProveedor(){
     printf("PROVEEDOR DADO DE BAJA\n");
     printf("***********************************\n");
     printf("\n");
+    
+    // Presiona para continuar  
+	system("pause"); 
+	system("cls");
+}
+
+//// Lista de proveedores guardados en listaProveedores.dat, listado general.
+void listadoProveedor(){
+    FILE *pf;
+    Proveedor prov;
+    pf = fopen("listaProveedores.dat","rb");
+    fread(&prov,sizeof(Proveedor),1,pf);
+    while(!feof(pf)){
+    	// Ficha de Proveedor
+    	system("color 0a");
+    	printf("*************************************\n");
+    	printf("Codigo de Producto: %d\n", prod.codigoProducto);
+    	printf("*************************************\n");
+    	printf("=========DESCRIPCION========\n");
+        printf("Razon Social: %s\n", prod.nombreProducto);
+        printf("========PRECIO Y STOCK======\n");
+		printf("Precio: %d", prod.precio);
+        printf(" %s\n", prod.moneda);
+        printf("----------------------------\n");
+        printf("Stock: %d\n", prod.stock);
+        printf("*************************************\n");
+        printf("\n");
+        fread(&prov,sizeof(Proveedor),1,pf);
+    }
+    fclose(pf);
     
     // Presiona para continuar  
 	system("pause"); 
