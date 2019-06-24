@@ -1,35 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-// Variables de soporte
-
-char anyKey; // Presionar cualquier tecla.
+#include <conio.h>
 
 void menu();
 
-typedef struct{
-    int codigo;
-    char detalle[30];
-    float precio;
-    float costo;
-    char prov[30];
-}Producto;
-
-typedef struct{
-    int codigo;
-    char nombre[30];
-    char telefono[30];
-    char email[30];
-}Proveedores;
-
-typedef struct{
-    char cuit[30];
-    char cliente[30];
-    char fechaalta[11];
-    char email[30];
-    char telefono[30];
-}Clientes;
-
+// Defino puntero de Empleado
 typedef struct{
     char nombre[250];
     char apellido[250];
@@ -45,45 +20,6 @@ typedef struct{
     int  direccionNumero;
 }Empleados;
 
-typedef struct{
-    int codigo;
-    char fecha[11];
-    char cuit[30];
-    float total;
-    float descuento;
-}Presupuesto;
-
-typedef struct{
-    int codigo;
-    char producto[30];
-    int cantidad;
-    float precio;
-}DetPresupuesto;
-
-// Funciones de Presupuestos
-void AltaPresu();
-void BajaPresu();
-void ModifPresu();
-void ListadoPresu();
-
-// Funciones de Productos
-void AltaProds();
-void BajaProds();
-void ModifProds();
-void ListadoProds();
-
-// Funciones de Proveedores
-void AltaProvs();
-void BajaProvs();
-void ModifProvs();
-void ListadoProvs();
-
-// Funciones de Clientes
-void AltaClientes();
-void BajaClientes();
-void ModifClientes();
-void ListadoClientes();
-
 // Funciones de Empleados
 void altaEmpleados();
 void bajaEmpleados();
@@ -97,36 +33,50 @@ int main(){
 }
 
 void menu(){
+	// Color pantalla
+	system("color 0a");
+	
+	// Variables de opciones de menues y sub-menues
     int opcion;
 	int opcion2;
     do{
     	printf("********************************************************\n");
+    	printf("**                 ABM - TP FINAL - UNLZ              **\n");
+    	printf("********************************************************\n");
     	printf("**                    MENU PRINCIPAL                  **\n");
     	printf("********************************************************\n");
         printf("--------------------------------------------------------\n");
+        printf("||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
         printf("--------------------------------------------------------\n");
-        printf("                          1) Empleados                  |\n");
+        printf("                          1) Empleados                 |\n");
+        printf("========================================================\n");
+        printf("                          2) Presupuestos              |\n");
+        printf("                          3) Productos                 |\n");
+        printf("                          4) Proveedores               |\n");
+        printf("                          5) Clientes                  |\n");
+        printf("========================================================\n");
+        printf("                          6) Facturas                  |\n");
+        printf("========================================================\n");
+        printf("                          7) Manuales                  |\n");
+        printf("========================================================\n");
+        printf("                          8) Licencia                  |\n");
+        printf("========================================================\n");
+        printf("                          9) Salir                     |\n");
         printf("--------------------------------------------------------\n");
-        printf("                          2) Presupuestos               |\n");
-        printf("                          3) Productos                  |\n");
-        printf("                          4) Proveedores                |\n");
-        printf("                          5) Clientes                   |\n");
-        printf("                          6) Salir                      |\n");
-        printf("--------------------------------------------------------\n");
-        printf("--------------------------------------------------------\n");
+        printf("Seleccione una opcion: ");
         scanf("%d",&opcion);
         system("cls");
-        printf("--------------------------------------------------------\n");
-        printf("--------------------------------------------------------\n");
+        printf("---------------------------------------------------------\n");
+        printf("---------------------------------------------------------\n");
         printf("                          1) Alta                       |\n");
         printf("                          2) Baja                       |\n");
         printf("                          3) Modificación               |\n");
         printf("                          4) Listado                    |\n");
-        printf("                          5) Buscar                     |\n");
-        printf("                          6) Volver al Menú             |\n");
-        printf("--------------------------------------------------------\n");
-        printf("--------------------------------------------------------\n");
-        scanf("%d",&opcion2);
+        printf("                          5) Menu                       |\n");
+        printf("---------------------------------------------------------\n");
+        printf("---------------------------------------------------------\n");
+        printf("Seleccione una opcion: ");
+		scanf("%d",&opcion2);
         system("cls");
             switch (opcion){
             	case 1:
@@ -134,27 +84,22 @@ void menu(){
                             case 1:
                                 altaEmpleados();
                                 break;
-                            /*
 							case 2:
-                                BajaEmpleados();
+                                bajaEmpleados();
                                 break;
-                            */
                             case 3:
                                 modifEmpleados();
                                 break;
                             case 4:
                                 listadoEmpleados();
                                 break;
-                            /*
 							case 5:
-                            	buscarEmpleados();
-                            */
-							case 6:
                                 menu();
                                 break;
                         }
                     break;
-                case 2:
+                /*
+				case 2:
                         switch(opcion2){
                             case 1:
                                 AltaPresu();
@@ -229,6 +174,7 @@ void menu(){
                                 menu();
                                 break;
                         }
+                        */
                     break;
                 case 6:
                 	system("exit");
@@ -238,182 +184,9 @@ void menu(){
     }while (opcion!=6);
 }
 
-void AltaPresu(){
-    FILE *pf;
-    Presupuesto presu;
-    pf = fopen("Presupuesto.dat","ab");
-    printf("Ingrese Código\n");
-    scanf("%i",&presu.codigo);
-    printf("Ingrese Fecha\n");
-    scanf("%s",presu.fecha);
-    printf("Ingrese CUIT\n");
-    scanf("%s",presu.cuit);
-    printf("Ingrese Total\n");
-    scanf("%f",&presu.total);
-    printf("Ingrese Descuento\n");
-    scanf("%f",&presu.descuento);
-    fseek(pf,0L,SEEK_END);
-    fwrite(&presu,sizeof(Presupuesto),1,pf);
-    fclose(pf);
-    system("clear");
-    menu();
-}
+// ABM Empleados
 
-void ListadoPresu(){
-    FILE *pf;
-    Presupuesto presu;
-    pf = fopen("Presupuesto.dat","rb");
-    fread(&presu,sizeof(Presupuesto),1,pf);
-    while(!feof(pf)){
-        printf("%i ; %s ; %s ; %.2f ; %.2f\n",presu.codigo,presu.fecha,presu.cuit,presu.total,presu.descuento);
-        fread(&presu,sizeof(Presupuesto),1,pf);
-    }
-    fclose(pf);
-}
-
-void ModifPresu(){
-    FILE *pf,*pfaux;
-    Presupuesto presu;
-    int codigoaux;
-    pf = fopen("Presupuesto.dat","rb");
-    pfaux = fopen("Presupuestoaux.dat","ab");
-    printf("Ingrese Código\n");
-    scanf("%i",&codigoaux);
-    fread(&presu,sizeof(Presupuesto),1,pf);
-        while (!feof(pf)){
-                if (presu.codigo != codigoaux){
-                    fseek(pfaux,0l,SEEK_END);
-                    fwrite(&presu,sizeof(Presupuesto),1,pfaux);
-                }else{
-                    printf("Ingrese Fecha\n");
-                    scanf("%s",presu.fecha);
-                    printf("Ingrese CUIT\n");
-                    scanf("%s",presu.cuit);
-                    printf("Ingrese Total\n");
-                    scanf("%f",&presu.total);
-                    printf("Ingrese Descuento\n");
-                    scanf("%f",&presu.descuento);
-                    fseek(pfaux,0l,SEEK_END);
-                    fwrite(&presu,sizeof(Presupuesto),1,pfaux);
-                }
-            fread(&presu,sizeof(Presupuesto),1,pf);
-        }
-    fclose(pf);
-    fclose(pfaux);
-    remove("Presupuesto.dat");
-    rename("Presupuestoaux.dat","Presupuesto.dat");
-}
-
-void BajaPresu(){
-    FILE *pf,*pfaux;
-    Presupuesto presu;
-    int codigoaux;
-    pf = fopen("Presupuesto.dat","rb");
-    pfaux = fopen("Presupuestoaux.dat","ab");
-    printf("Ingrese Código\n");
-    scanf("%i",&codigoaux);
-    fread(&presu,sizeof(Presupuesto),1,pf);
-        while (!feof(pf)){
-                if (presu.codigo != codigoaux){
-                    fseek(pfaux,0l,SEEK_END);
-                    fwrite(&presu,sizeof(Presupuesto),1,pfaux);
-                }
-            fread(&presu,sizeof(Presupuesto),1,pf);
-        }
-    fclose(pf);
-    fclose(pfaux);
-    remove("Presupuesto.dat");
-    rename("Presupuestoaux.dat","Presupuesto.dat");
-}
-
-void AltaProds(){
-    FILE *pf;
-    Producto prod;
-    pf = fopen("Productos.dat","ab");
-    printf("Ingrese Codigo\n");
-    scanf("%i",&prod.codigo);
-    printf("Ingrese Detalle\n");
-    scanf("%s",prod.detalle);
-    printf("Ingrese Precio\n");
-    scanf("%f",&prod.precio);
-    printf("Ingrese Costo\n");
-    scanf("%f",&prod.costo);
-    printf("Ingrese Proveedor\n");
-    scanf("%s",prod.prov);
-    fseek(pf,0L,SEEK_END);
-    fwrite(&prod,sizeof(Producto),1,pf);
-    fclose(pf);
-    system("clear");
-    menu();
-}
-
-void ListadoProds(){
-    FILE *pf;
-    Producto prod;
-    pf = fopen("Productos.dat","rb");
-    fread(&prod,sizeof(Producto),1,pf);
-    while(!feof(pf)){
-        printf("%i ; %s ; %.2f ; %.2f ; %s\n",prod.codigo,prod.detalle,prod.precio,prod.costo,prod.prov);
-        fread(&prod,sizeof(Producto),1,pf);
-    }
-    fclose(pf);
-}
-
-void ModifProds(){
-    FILE *pf,*pfaux;
-    Producto prod;
-    int codigoaux;
-    pf = fopen("Productos.dat","rb");
-    pfaux = fopen("Productosaux.dat","ab");
-    printf("Ingrese Código\n");
-    scanf("%i",&codigoaux);
-    fread(&prod,sizeof(Producto),1,pf);
-        while (!feof(pf)){
-                if (prod.codigo != codigoaux){
-                    fseek(pfaux,0l,SEEK_END);
-                    fwrite(&prod,sizeof(Producto),1,pfaux);
-                }else{
-                    printf("Ingrese Detalle\n");
-                    scanf("%s",prod.detalle);
-                    printf("Ingrese Precio\n");
-                    scanf("%f",&prod.precio);
-                    printf("Ingrese Costo\n");
-                    scanf("%f",&prod.costo);
-                    printf("Ingrese Proveedor\n");
-                    scanf("%s",prod.prov);
-                    fseek(pfaux,0l,SEEK_END);
-                    fwrite(&prod,sizeof(Producto),1,pfaux);
-                }
-            fread(&prod,sizeof(Producto),1,pf);
-        }
-    fclose(pf);
-    fclose(pfaux);
-    remove("Productos.dat");
-    rename("Productosaux.dat","Productos.dat");
-}
-
-void BajaProds(){
-    FILE *pf,*pfaux;
-    Producto prod;
-    int codigoaux;
-    pf = fopen("Productos.dat","rb");
-    pfaux = fopen("Productosaux.dat","ab");
-    printf("Ingrese Código\n");
-    scanf("%i",&codigoaux);
-    fread(&prod,sizeof(Producto),1,pf);
-        while (!feof(pf)){
-                if (prod.codigo != codigoaux){
-                    fseek(pfaux,0l,SEEK_END);
-                    fwrite(&prod,sizeof(Producto),1,pfaux);
-                }
-            fread(&prod,sizeof(Producto),1,pf);
-        }
-    fclose(pf);
-    fclose(pfaux);
-    remove("Productos.dat");
-    rename("Productosaux.dat","Productos.dat");
-}
-
+//// Alta de empleados que se guardan en listaEmpleados.dat
 void altaEmpleados(){
     FILE *pf;
     Empleados empleado;
@@ -451,6 +224,30 @@ void altaEmpleados(){
     menu();
 }
 
+//// Baja de empleados guardados en listaEmpleados.dat por DNI
+void bajaEmpleados(){
+    FILE *pf,*pfaux;
+    Empleados empleado;
+    int documentoBaja;
+    pf = fopen("listaEmpleados.dat","rb");
+    pfaux = fopen("listaEmpleadosAux.dat","ab");
+    printf("Ingrese DNI \n");
+    scanf("%d",&documentoBaja);
+    fread(&empleado,sizeof(Empleados),1,pf);
+        while (!feof(pf)){
+                if (empleado.dni != documentoBaja){
+                    fseek(pfaux,0l,SEEK_END);
+                    fwrite(&empleado,sizeof(Empleados),1,pfaux);
+                }
+            fread(&empleado,sizeof(Empleados),1,pf);
+        }
+    fclose(pf);
+    fclose(pfaux);
+    remove("listaEmpleados.dat");
+    rename("listaEmpleadosAux.dat","listaEmpleados.dat");
+}
+
+//// Lista de empleados guardados en listaEmpleados.dat, listado general.
 void listadoEmpleados(){
     FILE *pf;
     Empleados empleado;
@@ -482,6 +279,7 @@ void listadoEmpleados(){
     fclose(pf);
 }
 
+//// Modificacion de Empleados guardados en listaEmpleados.dat, por valor, es decir parametro a cambiar.
 void modifEmpleados(){
     FILE *pf,*pfaux;
     Empleados empleado;
