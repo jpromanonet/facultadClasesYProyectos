@@ -2,9 +2,12 @@
 #include <stdlib.h>
 #include <conio.h>
 
+// Funcion principal de Menu
 void menu();
 
-// Defino puntero de Empleado
+// Punteros
+
+//// Defino puntero de Empleado
 typedef struct{
     char nombre[250];
     char apellido[250];
@@ -21,12 +24,31 @@ typedef struct{
     int  direccionNumero;
 }Empleados;
 
-// Funciones de Empleados
+//// Defino puntero de Presupuestos
+typedef struct{
+	char razonSocial[250];
+	int  diaPresupuesto;
+	int  mesPresupuesto;
+	int  anioPresupuesto;
+	int  precioPresupuesto;
+	char moneda[100];
+	char descripcion[250];
+	char emailPresu[250];
+}Presupuesto;
+
+// Funciones relacionales a los punteros previamente definidos
+
+//// Funciones de Empleados
 void altaEmpleados();
 void bajaEmpleados();
 void modifEmpleados();
 void listadoEmpleados();
-void buscarEmpleados();
+
+//// Funciones de Presupuestos
+void altaPresupuesto();
+void bajaPresupuesto();
+void modifPresupuesto();
+void listadoPresupuesto();
 
 int main(){
     menu();
@@ -99,26 +121,29 @@ void menu(){
                                 break;
                         }
                     break;
-                /*
+                
 				case 2:
                         switch(opcion2){
                             case 1:
-                                AltaPresu();
+                                altaPresupuesto();
                                 break;
-                            case 2:
-                                BajaPresu();
+                            /*
+							case 2:
+                                bajaPresupuesto();
                                 break;
                             case 3:
-                                ModifPresu();
+                                modifPresupuesto();
                                 break;
                             case 4:
-                                ListadoPresu();
+                                listadoPresupuesto();
                                 break;
-                            case 5:
+                            */
+							case 5:
                                 menu();
                                 break;
                         }
                     break;
+                /*
                 case 3:
                         switch(opcion2){
                             case 1:
@@ -387,4 +412,47 @@ void modifEmpleados(){
     fclose(pfaux);
     remove("listaEmpleados.dat");
     rename("listaEmpleadosAux.dat","listaEmpleados.dat");
+}
+
+// ABM Presupuestos
+
+//// Alta de empleados que se guardan en listaEmpleados.dat
+void altaPresupuesto(){
+    FILE *pf;
+    Presupuesto pres;
+    pf = fopen("listaPresupuestos.dat","ab");
+    printf("Ingrese Razon Social: ");
+    scanf("%s", pres.razonSocial);
+    printf("Ingrese descripcion: ");
+    scanf("%s", pres.descripcion);
+    printf("Ingrese Precio Estimado: ");
+    scanf("%d", &pres.precioPresupuesto);
+    printf("Ingrese moneda: ");
+    scanf("%s", pres.moneda);
+    printf("Ingrese dia de emision: ");
+    scanf("%d", &pres.diaPresupuesto);
+    printf("Ingrese mes de emision: ");
+    scanf("%d", &pres.mesPresupuesto);
+    printf("Ingrese anio de emision: ");
+    scanf("%d", &pres.anioPresupuesto);
+    printf("Ingrese E-mail de contacto: ");
+    scanf("%s", pres.emailPresu);
+    fseek(pf,0L,SEEK_END);
+    fwrite(&pres,sizeof(Presupuesto),1,pf);
+    fclose(pf);
+    
+    // Mensaje de exito
+    printf("\n");
+    printf("***********************************\n");
+    printf("PRESUPUESTO GENERADO CON EXITO!\n");
+    printf("***********************************\n");
+    printf("\n");
+	        
+    // Presiona para continuar  
+	system("pause"); 
+	system("cls");
+    
+    // Limpia pantalla y vuelve al menu
+	system("cls");
+    menu();
 }
