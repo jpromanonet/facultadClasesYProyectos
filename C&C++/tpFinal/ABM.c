@@ -46,6 +46,20 @@ typedef struct{
 	char moneda[3];
 }Producto;
 
+//// Defino puntero de Proveedor
+typedef struct{
+    char razonSocial[250];
+    int  cuit;
+    int  diaAlta;
+    int  mesAlta;
+    int  anioAlta;
+    char email[250];
+    int  telefono;
+    char direccion[250];
+    int  direccionNumero;
+    char rubro[250];
+}Proveedor;
+
 // Funciones relacionales a los punteros previamente definidos
 
 //// Funciones de Empleados
@@ -65,6 +79,12 @@ void altaProducto();
 void bajaProducto();
 void modifProducto();
 void listadoProducto();
+
+//// Funciones de Proveedores
+void altaProveedor();
+void bajaProveedor();
+void modifProveedor();
+void listadoProveedor();
 
 /*----------------------------------------------------------------------------------------------------------*/
 
@@ -186,26 +206,28 @@ void menu(){
                                 break;
                         }
                     break;
-                /*
                 case 4:
                         switch(opcion2){
                             case 1:
-                                //AltaProvs();
+                                altaProveedor();
                                 break;
-                            case 2:
-                                //BajaProvs();
+                            /*
+							case 2:
+                                bajaProveedor();
                                 break;
                             case 3:
-                                //ModifProvs();
+                                modifProveedor();
                                 break;
                             case 4:
-                                //ListadoProvs();
+                                listadoProveedor();
                                 break;
+                            */
                             case 5:
                                 menu();
                                 break;
                         }
                     break;
+                /*
                 case 5:
                         switch(opcion2){
                             case 1:
@@ -249,12 +271,14 @@ void altaEmpleados(){
     scanf("%s", empleado.apellido);
     printf("Ingrese DNI: ");
     scanf("%d", &empleado.dni);
+    printf("------------------------------------\n");
     printf("Ingrese dia de Alta: ");
     scanf("%d", &empleado.diaAlta);
     printf("Ingrese mes de Alta: ");
     scanf("%d", &empleado.mesAlta);
     printf("Ingrese anio de Alta: ");
     scanf("%d", &empleado.anioAlta);
+    printf("------------------------------------\n");
     printf("Ingrese E-mail: ");
     scanf("%s", empleado.email);
     printf("Ingrese Telefono: ");
@@ -262,11 +286,13 @@ void altaEmpleados(){
 	printf("Ingrese Calle: ");
     scanf("%s", empleado.direccion);
 	printf("Altura de calle: ");
-    scanf("%d", &empleado.direccionNumero);  
+    scanf("%d", &empleado.direccionNumero);
+    printf("------------------------------------\n");  
     printf("Ingrese Sueldo a percibir: ");
     scanf("%d", &empleado.sueldo);
     printf("Ingrese Obra Social: ");
     scanf("%s", empleado.obraSocial);
+    printf("------------------------------------\n");
     printf("Ingrese Nro de Empleado: ");
     scanf("%d", &empleado.nroEmpleado);
     fseek(pf,0L,SEEK_END);
@@ -455,16 +481,19 @@ void altaPresupuesto(){
     scanf("%s", pres.razonSocial);
     printf("Ingrese descripcion: ");
     scanf("%s", pres.descripcion);
+    printf("------------------------------------\n");
     printf("Ingrese Precio Estimado: ");
     scanf("%d", &pres.precioPresupuesto);
     printf("Ingrese moneda: ");
     scanf("%s", pres.moneda);
+    printf("------------------------------------\n");
     printf("Ingrese dia de emision: ");
     scanf("%d", &pres.diaPresupuesto);
     printf("Ingrese mes de emision: ");
     scanf("%d", &pres.mesPresupuesto);
     printf("Ingrese anio de emision: ");
     scanf("%d", &pres.anioPresupuesto);
+    printf("------------------------------------\n");
     printf("Ingrese E-mail de contacto: ");
     scanf("%s", pres.emailPresu);
     fseek(pf,0L,SEEK_END);
@@ -638,10 +667,12 @@ void altaProducto(){
     scanf("%d", &prod.codigoProducto);
     printf("Ingrese nombre: ");
     scanf("%s", prod.nombreProducto);
+    printf("------------------------------------\n");
     printf("Ingrese Precio: ");
     scanf("%d", &prod.precio);
     printf("Ingrese moneda: ");
     scanf("%s", prod.moneda);
+    printf("------------------------------------\n");
     printf("Ingrese stock (cantidad): ");
     scanf("%d", &prod.stock);
     fseek(pf,0L,SEEK_END);
@@ -789,4 +820,54 @@ void modifProducto(){
     fclose(pfaux);
     remove("listaProductos.dat");
     rename("listaProductosAux.dat","listaProductos.dat");
+}
+
+/*----------------------------------------------------------------------------------------------------------*/
+
+// ABM Proveedores
+
+//// Alta de proveedores que se guardan en listaProveedores.dat
+void altaProveedor(){
+    FILE *pf;
+    Proveedor prov;
+    pf = fopen("listaProveedores.dat","ab");
+    printf("Ingrese razon social: ");
+    scanf("%s", prov.razonSocial);
+    printf("Ingrese Rubro: ");
+    scanf("%s", prov.rubro);
+    printf("Ingrese CUIT(Junto, sin guiones): ");
+    scanf("%d", &prov.cuit);
+    printf("------------------------------------\n");
+    printf("Ingrese dia de Alta: ");
+    scanf("%d", &prov.diaAlta);
+    printf("Ingrese mes de Alta: ");
+    scanf("%d", &prov.mesAlta);
+    printf("Ingrese anio de Alta: ");
+    scanf("%d", &prov.anioAlta);
+    printf("------------------------------------\n");
+    printf("Ingrese E-mail: ");
+    scanf("%s", prov.email);
+    printf("Ingrese Telefono: ");
+    scanf("%d", &prov.telefono);
+	printf("Ingrese Calle: ");
+    scanf("%s", prov.direccion);
+	printf("Altura de calle: ");
+    scanf("%d", &prov.direccionNumero);  
+    fseek(pf,0L,SEEK_END);
+    fwrite(&prov,sizeof(Proveedor),1,pf);
+    fclose(pf);
+    
+    // Mensaje de exito
+    printf("\n");
+    printf("***********************************\n");
+    printf("PROVEEDOR CARGADO CON EXITO!\n");
+    printf("***********************************\n");
+    printf("\n");
+	        
+    // Presiona para continuar  
+	system("pause");
+    
+    // Limpia pantalla y vuelve al menu
+	system("cls");
+    menu();
 }
