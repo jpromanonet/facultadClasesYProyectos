@@ -1155,7 +1155,7 @@ void listadoCliente(){
     pf = fopen("listaClientes.dat","rb");
     fread(&cl,sizeof(Cliente),1,pf);
     while(!feof(pf)){
-    	// Ficha de Proveedor
+    	// Ficha de Cliente
     	system("color 0a");
     	printf("*************************************\n");
     	printf("Nro Cliente: %d\n", cl.nroCliente);
@@ -1256,7 +1256,7 @@ void modifCliente(){
 //// Manual de usuario
 void manual(){
 	printf("******************************************************************************\n");
-	printf("***                          MANUAL DE USO                                 ***\n");
+	printf("******************************** MANUAL DE USO *******************************\n");
 	printf("******************************************************************************\n");
 	printf("******************************************************************************\n");
 	printf("*                                                                            *\n");
@@ -1273,7 +1273,68 @@ void manual(){
 	printf("*                                                                            *\n");
 	printf("*      Lista los empleados con una pequenia ficha con sus datos ordenados    *\n");
 	printf("*============================================================================*\n");
-	
+	printf("*                                                                            *\n");
+	printf("*2. Presupuestos:                                                            *\n");
+	printf("*                                                                            *\n");
+	printf("*      Permite generar presupuestos, asignando un codigo de presupuesto, una *\n");
+	printf("*razon social, y fecha de generacion (primero cargar dia, luego mes y anio ) *\n");
+	printf("*precio(solo valor numero), moneda(ARS, U$S, etc), descripcion(una palabra)  *\n");
+	printf("* y el E-mail del contacto al que se envia el presupuesto.                   *\n");
+	printf("*                                                                            *\n");
+	printf("*      Los presupuestos se dan de baja, utilizando el codigo de presupuesto  *\n");
+	printf("*y no hay BackUp una vez borrado.                                            *\n");
+	printf("*                                                                            *\n");
+	printf("*      Permite modificar la razon social, el email, la descripcion y el valor*\n");
+	printf("*                                                                            *\n");
+	printf("*      Lista los presupuestos con una ficha con sus datos ordenados          *\n");
+	printf("*============================================================================*\n");
+	printf("*                                                                            *\n");
+	printf("*3. Productos:                                                               *\n");
+	printf("*                                                                            *\n");
+	printf("*      Permite dar de alta productos, con codigo de producto, nombre, precio,*\n");
+	printf("*moneda(ARS o U$S), y la cantidad de stock disponible                        *\n");
+	printf("*                                                                            *\n");
+	printf("*      Los productos se dan de baja utilizando el codigo de producto y una   *\n");
+	printf("*vez eliminado, no hay BackUp del producto en la lista de productos.         *\n");
+	printf("*                                                                            *\n");
+	printf("*      Permite modificar el valor, el nombre del producto y el stock disponi_*\n");
+	printf("*ble.                                                                        *\n");
+	printf("*                                                                            *\n");
+	printf("*      Lista los presupuestos con una ficha con sus datos ordenados.         *\n");
+	printf("*============================================================================*\n");
+	printf("*                                                                            *\n");
+	printf("*4. Proveedores:                                                             *\n");
+	printf("*                                                                            *\n");
+	printf("*      Permite dar de alta proveedores con razon social, rubro, CUIT, fecha  *\n");
+	printf("*de alta, E-mail, telefono, direccion(primero calle, luego altura).          *\n");
+	printf("*                                                                            *\n");
+	printf("*      Los proveedores se dan de baja utilizando el CUIT y una vez dado de   *\n");
+	printf("*baja, no puede restaurarse.                                                 *\n");
+	printf("*                                                                            *\n");
+	printf("*      Permite modificar la razon social, telefono, E-mail, direccion y rubro*\n");
+	printf("*                                                                            *\n");
+	printf("*      Lista los proveedores con una ficha con sus datos ordenados           *\n");
+	printf("*============================================================================*\n");
+	printf("*                                                                            *\n");
+	printf("*5. Clientes:                                                                *\n");
+	printf("*                                                                            *\n");
+	printf("*      Permite dar de alta clientes con nombre(1), apellido(1), DNI, fecha de*\n");
+	printf("*alta, e-mail, telefono, direccion(primero calle, luego altura), numero de   *\n");
+	printf("*cliente.                                                                    *\n");
+	printf("*                                                                            *\n");
+	printf("*      Los clientes se dan de baja por numero de cliente y no se recuperan.  *\n");
+	printf("*                                                                            *\n");
+	printf("*      Permite modificar Telefono, E-mail y direccion(calle y luego altura)  *\n");
+	printf("*                                                                            *\n");
+	printf("*      Lista los clientes con una ficha con sus datos ordenados.             *\n");
+	printf("*============================================================================*\n");
+	printf("*                                                                            *\n");
+	printf("*                                  EXTRAS                                    *\n");
+	printf("*                                                                            *\n");
+	printf("*Cuando seleccionas ver el manual, la licencia o salir, presiona 5 para      *\n");
+	printf("*continuar.                                                                  *\n");
+	printf("*============================================================================*\n");
+	printf("******************************************************************************\n"); 
 	printf("\n");
 	// Presiona para continuar  
 	system("pause");
