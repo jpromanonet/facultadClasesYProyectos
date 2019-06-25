@@ -121,6 +121,10 @@ void bajaCliente();
 void modifCliente();
 void listadoCliente();
 
+//// Funciones Extras
+void manual();
+void licencia();
+
 /*----------------------------------------------------------------------------------------------------------*/
 
 // Funcion principal que llama al Menu
@@ -175,6 +179,8 @@ void menu(){
         printf("                          3) Modificacion              |\n");
         printf("                          4) Listado                   |\n");
         printf("                          5) Menu                      |\n");
+        printf("--------------------------------------------------------\n");
+        printf("   Para ver Manual, Licencia o Salir, presiona (5)     |\n");
         printf("--------------------------------------------------------\n");
         printf("--------------------------------------------------------\n");
         printf("Seleccione una opcion: ");
@@ -263,7 +269,6 @@ void menu(){
                             case 1:
                                 altaCliente();
                                 break;
-                             /*
                             case 2:
                                 bajaCliente();
                                 break;
@@ -273,12 +278,17 @@ void menu(){
                             case 4:
                                 listadoCliente();
                                 break;
-                        	*/
                             case 5:
                                 menu();
                                 break;
                         }
                     break;
+                case 6:
+                	manual();
+                	break;
+                case 7:
+                	licencia();
+                	break;
                 case 8:
                 	exit(0);
                     break;
@@ -1104,3 +1114,197 @@ void altaCliente(){
     menu();
 }
 
+//// Baja de clientes guardados en listaClientes.dat por nroCliente
+void bajaCliente(){
+    FILE *pf,*pfaux;
+    Cliente cl;
+    int numeroCliente;
+    pf = fopen("listaClientes.dat","rb");
+    pfaux = fopen("listaClientesAux.dat","ab");
+    printf("Ingrese Nro de Cliente: ");
+    scanf("%d", &numeroCliente);
+    fread(&cl,sizeof(Cliente),1,pf);
+        while (!feof(pf)){
+                if (cl.nroCliente != numeroCliente){
+                    fseek(pfaux,0l,SEEK_END);
+                    fwrite(&cl,sizeof(Cliente),1,pfaux);
+                }
+            fread(&cl,sizeof(Cliente),1,pf);
+        }
+    fclose(pf);
+    fclose(pfaux);
+    remove("listaClientes.dat");
+    rename("listaClientesAux.dat","listaClientes.dat");
+    
+    // Mensaje de baja
+    printf("\n");
+    printf("***********************************\n");
+    printf("CLIENTE DADO DE BAJA\n");
+    printf("***********************************\n");
+    printf("\n");
+    
+    // Presiona para continuar  
+	system("pause"); 
+	system("cls");
+}
+
+//// Lista de clientes guardados en listaClientes.dat, listado general.
+void listadoCliente(){
+    FILE *pf;
+    Cliente cl;
+    pf = fopen("listaClientes.dat","rb");
+    fread(&cl,sizeof(Cliente),1,pf);
+    while(!feof(pf)){
+    	// Ficha de Proveedor
+    	system("color 0a");
+    	printf("*************************************\n");
+    	printf("Nro Cliente: %d\n", cl.nroCliente);
+        printf("----------------------------\n");
+        printf("DNI: %d\n", cl.dni);
+    	printf("*************************************\n");
+    	printf("=========DATOS CONTACTO========\n");
+        printf("Nombre: %s", cl.nombre);
+        printf(" %s\n", cl.apellido);
+        printf("----------------------------\n");
+        printf("E-mail: %s\n", cl.email);
+        printf("Telefono: %d\n", cl.telefono);
+        printf("E-mail: %s", cl.direccion);
+        printf(" %d\n", cl.direccionNumero);
+        printf("==============FECHA============\n");
+		printf("Fecha Alta: %d", cl.diaAlta);
+		printf("/%d", cl.mesAlta);
+		printf("/%d\n", cl.anioAlta);
+        printf("*************************************\n");
+        printf("\n");
+        fread(&cl,sizeof(Cliente),1,pf);
+    }
+    fclose(pf);
+    
+    // Presiona para continuar  
+	system("pause"); 
+	system("cls");
+}
+
+//// Modificacion de clientes guardados en listaClientes.dat, por valor, es decir parametro a cambiar.
+void modifCliente(){
+    FILE *pf,*pfaux;
+    Cliente cl;
+    int clienteModifica;
+    int opcionValorCliente;
+	pf = fopen("listaClientes.dat","rb");
+    pfaux = fopen("listaClientesAux.dat","ab");
+    printf("Buscar por Nro Cliente: ");
+    scanf("%d",&clienteModifica);
+    fread(&cl,sizeof(Cliente),1,pf);
+        while (!feof(pf)){
+                if (cl.nroCliente != clienteModifica){
+                    fseek(pfaux,0l,SEEK_END);
+                    fwrite(&cl,sizeof(Cliente),1,pfaux);
+                }else{
+                	// Sub menu para seleccionar el valor a modificar de la ficha de clientes.
+                	printf("*********************************************************\n");
+    				printf("**                    MODIFICAR CLIENTE                **\n");
+    				printf("*********************************************************\n");
+        			printf("---------------------------------------------------------\n");
+        			printf("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+                	printf("---------------------------------------------------------\n");
+                    printf("---------------------------------------------------------\n");
+                    printf("                          1) Telefono                   |\n");
+                    printf("                          2) E-mail                     |\n");
+                    printf("                          3) Direccion                  |\n");
+                    printf("---------------------------------------------------------\n");
+                    printf("---------------------------------------------------------\n");
+                    printf("Seleccione una opcion: ");
+		            scanf("%d",&opcionValorCliente);
+                        switch (opcionValorCliente){
+							case 1:
+								printf("---------------------------------------------------------\n");
+								printf("Nuevo Telefono: ");
+                                scanf("%d", &cl.telefono);
+								system("cls");
+								break;
+							case 2:
+								printf("---------------------------------------------------------\n");
+								printf("Nuevo E-mail: ");
+                                scanf("%s", cl.email);
+								system("cls");
+								break;
+							case 3:
+								printf("---------------------------------------------------------\n");
+								printf("Nueva calle: ");
+                                scanf("%s", cl.direccion);
+                                printf("Altura: ");
+                                scanf("%d", &cl.direccionNumero);
+								system("cls");
+								break;
+                        }
+                    fseek(pfaux,0l,SEEK_END);
+                    fwrite(&cl,sizeof(Cliente),1,pfaux);
+                }
+            fread(&cl,sizeof(Cliente),1,pf);
+        }
+    fclose(pf);
+    fclose(pfaux);
+    remove("listaClientes.dat");
+    rename("listaClientesAux.dat","listaClientes.dat");
+}
+
+/*----------------------------------------------------------------------------------------------------------*/
+
+// Manual y Licencia
+
+//// Manual de usuario
+void manual(){
+	printf("******************************************************************************\n");
+	printf("***                          MANUAL DE USO                                 ***\n");
+	printf("******************************************************************************\n");
+	printf("******************************************************************************\n");
+	printf("*                                                                            *\n");
+	printf("*1. Empleados:                                                               *\n");
+	printf("*                                                                            *\n");
+	printf("*      Permite cargar, dar de baja, modificar y listar los empleados         *\n");
+	printf("*registrados, los valores que maneja son: nombre(Solo un nombre), Apellido(1)*\n");
+	printf("*DNI, Telefono, email, direccion(primero la calle, luego la altura), sueldo y*\n");
+	printf("*Obra Social, asi como numero de empleado.                                   *\n");
+	printf("*                                                                            *\n");
+	printf("*      Se da de baja utilizando el DNI, lo elimina del listado y no hay BKP  *\n");
+	printf("*                                                                            *\n");
+	printf("*      Permite modificar sueldo, direccion, telefono, email, obra social     *\n");
+	printf("*                                                                            *\n");
+	printf("*      Lista los empleados con una pequenia ficha con sus datos ordenados    *\n");
+	printf("*============================================================================*\n");
+	
+	printf("\n");
+	// Presiona para continuar  
+	system("pause");
+    
+    // Limpia pantalla y vuelve al menu
+	system("cls");
+    menu();
+}
+
+//// Licencia GPLv3
+void licencia(){
+	printf("Copyright (C) 2019  Juan P. Romano | UNLZ\n");
+	printf("\n");
+    printf("This program is FREE SOFTWARE: you can redistribute it and/or modify\n");
+    printf("it under the terms of the GNU General Public License as published by\n");
+    printf("the Free Software Foundation, either version 3 of the License, or\n");
+    printf("(at your option) any later version.\n");
+	printf("\n");
+    printf("This program is distributed in the hope that it will be useful,\n");
+    printf("but WITHOUT ANY WARRANTY; without even the implied warranty of\n");
+    printf("MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n");
+    printf("GNU General Public License for more details.\n");
+	printf("\n");
+    printf("You should have received a copy of the GNU General Public License\n");
+    printf("along with this program.  If not, see <https://www.gnu.org/licenses/>.\n");
+    printf("\n");
+	
+	// Presiona para continuar  
+	system("pause");
+    
+    // Limpia pantalla y vuelve al menu
+	system("cls");
+    menu();
+}
