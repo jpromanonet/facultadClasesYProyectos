@@ -414,7 +414,7 @@ void modifEmpleados(){
                     fseek(pfaux,0l,SEEK_END);
                     fwrite(&empleado,sizeof(Empleados),1,pfaux);
                 }else{
-                	// Sun menu para seleccionar el valor a modificar de la ficha de empleado.
+                	// Sub menu para seleccionar el valor a modificar de la ficha de empleado.
                 	printf("*********************************************************\n");
     				printf("**                    MODIFICAR EMPLEADO               **\n");
     				printf("*********************************************************\n");
@@ -609,7 +609,7 @@ void modifPresupuesto(){
                     fseek(pfaux,0l,SEEK_END);
                     fwrite(&pres,sizeof(Presupuesto),1,pfaux);
                 }else{
-                	// Sun menu para seleccionar el valor a modificar de la ficha de empleado.
+                	// Sub menu para seleccionar el valor a modificar de la ficha de presupuestos.
                 	printf("*********************************************************\n");
     				printf("**                    MODIFICAR PRESUPUESTO            **\n");
     				printf("*********************************************************\n");
@@ -784,7 +784,7 @@ void modifProducto(){
                     fseek(pfaux,0l,SEEK_END);
                     fwrite(&prod,sizeof(Producto),1,pfaux);
                 }else{
-                	// Sun menu para seleccionar el valor a modificar de la ficha de empleado.
+                	// Sub menu para seleccionar el valor a modificar de la ficha de producto.
                 	printf("*********************************************************\n");
     				printf("**                    MODIFICAR PRODUCTO               **\n");
     				printf("*********************************************************\n");
@@ -968,7 +968,7 @@ void modifProveedor(){
                     fseek(pfaux,0l,SEEK_END);
                     fwrite(&prov,sizeof(Proveedor),1,pfaux);
                 }else{
-                	// Sun menu para seleccionar el valor a modificar de la ficha de empleado.
+                	// Sub menu para seleccionar el valor a modificar de la ficha de proveedores.
                 	printf("*********************************************************\n");
     				printf("**                    MODIFICAR PROVEEDOR              **\n");
     				printf("*********************************************************\n");
@@ -1029,3 +1029,7 @@ void modifProveedor(){
     remove("listaProveedores.dat");
     rename("listaProveedoresAux.dat","listaProveedores.dat");
 }
+
+/*----------------------------------------------------------------------------------------------------------*/
+
+// ABM Clientes
