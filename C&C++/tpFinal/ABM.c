@@ -74,6 +74,21 @@ typedef struct{
     char rubro[250];
 }Proveedor;
 
+//// Defino estructura de Cliente
+typedef struct{
+    char nombre[250];
+    char apellido[250];
+    int  dni;
+    int  diaAlta;
+    int  mesAlta;
+    int  anioAlta;
+    char email[250];
+    int  telefono;
+    int  nroCliente;
+    char direccion[250];
+    int  direccionNumero;
+}Cliente;
+
 // Funciones relacionales a las estructuras previamente definidas
 
 //// Funciones de Empleados
@@ -99,6 +114,12 @@ void altaProveedor();
 void bajaProveedor();
 void modifProveedor();
 void listadoProveedor();
+
+//// Funciones de Cliente
+void altaCliente();
+void bajaCliente();
+void modifCliente();
+void listadoCliente();
 
 /*----------------------------------------------------------------------------------------------------------*/
 
@@ -237,29 +258,29 @@ void menu(){
                                 break;
                         }
                     break;
-                /*
                 case 5:
                         switch(opcion2){
                             case 1:
-                                //AltaClientes();
+                                altaCliente();
                                 break;
+                             /*
                             case 2:
-                                //BajaClientes();
+                                bajaCliente();
                                 break;
                             case 3:
-                                //ModifClientes();
+                                modifCliente();
                                 break;
                             case 4:
-                                //ListadoClientes();
+                                listadoCliente();
                                 break;
+                        	*/
                             case 5:
                                 menu();
                                 break;
                         }
-                        */
                     break;
-                case 9:
-                	system("exit");
+                case 8:
+                	exit(0);
                     break;
 
             }
@@ -1033,3 +1054,53 @@ void modifProveedor(){
 /*----------------------------------------------------------------------------------------------------------*/
 
 // ABM Clientes
+
+//// Alta de Cliente que se guardan en listaClientes.dat
+void altaCliente(){
+    FILE *pf;
+    Cliente cl;
+    pf = fopen("listaClientes.dat","ab");
+    printf("Ingrese nombre: ");
+    scanf("%s", cl.nombre);
+    printf("Ingrese Apellido: ");
+    scanf("%s", cl.apellido);
+    printf("Ingrese DNI: ");
+    scanf("%d", &cl.dni);
+    printf("------------------------------------\n");
+    printf("Ingrese dia de Alta: ");
+    scanf("%d", &cl.diaAlta);
+    printf("Ingrese mes de Alta: ");
+    scanf("%d", &cl.mesAlta);
+    printf("Ingrese anio de Alta: ");
+    scanf("%d", &cl.anioAlta);
+    printf("------------------------------------\n");
+    printf("Ingrese E-mail: ");
+    scanf("%s", cl.email);
+    printf("Ingrese Telefono: ");
+    scanf("%d", &cl.telefono);
+	printf("Ingrese Calle: ");
+    scanf("%s", cl.direccion);
+	printf("Altura de calle: ");
+    scanf("%d", &cl.direccionNumero);
+    printf("------------------------------------\n");
+    printf("Ingrese Nro de Cliente: ");
+    scanf("%d", &cl.nroCliente);
+    fseek(pf,0L,SEEK_END);
+    fwrite(&cl,sizeof(Cliente),1,pf);
+    fclose(pf);
+    
+    // Mensaje de exito
+    printf("\n");
+    printf("***********************************\n");
+    printf("CLIENTE CARGADO CON EXITO!\n");
+    printf("***********************************\n");
+    printf("\n");
+	        
+    // Presiona para continuar  
+	system("pause");
+    
+    // Limpia pantalla y vuelve al menu
+	system("cls");
+    menu();
+}
+
