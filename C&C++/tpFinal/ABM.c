@@ -575,7 +575,7 @@ void modifEmpleados(){
 
 // ABM Presupuestos
 
-//// Alta de empleados que se guardan en listaEmpleados.dat
+//// Alta de presupuestos que se guardan en listaEmpleados.dat
 void altaPresupuesto(){
     FILE *pf;
     Presupuesto pres;
