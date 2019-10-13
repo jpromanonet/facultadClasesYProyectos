@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ejercicio02;
+package trabajopractico01;
 
 // Importar librerias
 import java.util.Scanner;
@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author usuario
  */
-public class ejecicio02 {
+public class ejercicio02 {
      public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n;

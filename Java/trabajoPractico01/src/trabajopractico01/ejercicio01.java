@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ejercicio01;
+package trabajopractico01;
 
 // Import libraries
 import java.util.Scanner;

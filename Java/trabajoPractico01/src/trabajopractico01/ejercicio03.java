@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ejercicio03;
+package trabajopractico01;
 //programa que muestra el nombre y el sueldo del empleado que más gana
 import java.util.*;
 /**
