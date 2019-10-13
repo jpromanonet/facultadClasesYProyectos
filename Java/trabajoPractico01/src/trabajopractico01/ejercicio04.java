@@ -5,11 +5,6 @@
  */
 package trabajopractico01;
 
-/**
- *
- * @author usuario
- */
-
 import java.util.Random;
 
 public class ejercicio04 {

@@ -5,10 +5,7 @@
  */
 package trabajopractico01;
 import java.util.Scanner;
-/**
- *
- * @author winEnv
- */
+
 public class ejercicio16 {
     
     public static Scanner teclado;

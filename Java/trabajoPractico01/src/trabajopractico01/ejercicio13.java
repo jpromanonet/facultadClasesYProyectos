@@ -5,10 +5,6 @@
  */
 package trabajopractico01;
 
-/**
- *
- * @author winEnv
- */
 public class ejercicio13 {
     public static void main(String[] args) throws InterruptedException {
  

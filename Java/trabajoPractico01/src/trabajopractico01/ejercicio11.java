@@ -5,10 +5,7 @@
  */
 package trabajopractico01;
 import java.util.Scanner;
-/**
- *
- * @author winEnv
- */
+
 public class ejercicio11 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

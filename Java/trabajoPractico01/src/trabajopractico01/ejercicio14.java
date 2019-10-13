@@ -5,10 +5,7 @@
  */
 package trabajopractico01;
 import java.util.Scanner;
-/**
- *
- * @author winEnv
- */
+
 public class ejercicio14 {
     public static void main(String []args){
     int num, unidad, decena;

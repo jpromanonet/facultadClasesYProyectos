@@ -5,10 +5,6 @@
  */
 package trabajopractico01;
 
-/**
- *
- * @author usuario
- */
 public class ejercicio06 {
     
     public static void main(String[] args){

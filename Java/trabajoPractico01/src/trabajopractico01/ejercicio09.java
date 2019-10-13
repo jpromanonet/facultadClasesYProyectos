@@ -5,10 +5,7 @@
  */
 package trabajopractico01;
 import javax.swing.JOptionPane;
-/**
- *
- * @author winEnv
- */
+
 public class ejercicio09 {
     public static void main(String[] args) {
  

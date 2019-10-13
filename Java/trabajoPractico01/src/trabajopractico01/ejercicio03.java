@@ -6,10 +6,7 @@
 package trabajopractico01;
 //programa que muestra el nombre y el sueldo del empleado que más gana
 import java.util.*;
-/**
- *
- * @author usuario
- */
+
 public class ejercicio03 {
      public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

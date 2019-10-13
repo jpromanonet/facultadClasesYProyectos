@@ -8,10 +8,7 @@ package trabajopractico01;
 //Programa que cuenta el número de palabras de un texto.
 import java.util.Scanner;
 import java.util.StringTokenizer;
-/**
- *
- * @author usuario
- */
+
 public class ejercicio05 {
     public static void main(String[] args) {
        Scanner sc = new Scanner(System.in);

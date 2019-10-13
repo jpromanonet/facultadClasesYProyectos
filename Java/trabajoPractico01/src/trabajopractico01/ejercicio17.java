@@ -5,10 +5,6 @@
  */
 package trabajopractico01;
 
-/**
- *
- * @author winEnv
- */
 public class ejercicio17 {
     public static void main(String[] args) {
         for (int i = 0; i <= 9; i++) { 

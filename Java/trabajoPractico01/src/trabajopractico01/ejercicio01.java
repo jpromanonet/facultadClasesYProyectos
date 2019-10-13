@@ -8,10 +8,6 @@ package trabajopractico01;
 // Import libraries
 import java.util.Scanner;
 
-/**
- *
- * @author usuario
- */
 public class ejercicio01 {
     
     public static void main(String[] args) {

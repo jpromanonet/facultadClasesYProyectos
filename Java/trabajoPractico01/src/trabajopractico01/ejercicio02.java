@@ -8,10 +8,6 @@ package trabajopractico01;
 // Importar librerias
 import java.util.Scanner;
 
-/**
- *
- * @author usuario
- */
 public class ejercicio02 {
      public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
