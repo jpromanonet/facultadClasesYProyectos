@@ -25,7 +25,7 @@ public class cargarMoto {
                 int año=sc.nextInt();
                 System.out.print("Ingrese la cilindrada de la moto :");
                 int cil=sc.nextInt();
-                System.out.print("Ingrese el peso de la moto :");
+                System.out.print("Ingrese el peso total de la moto :");
                 System.out.print("-----------------------------------");
                 int peso=sc.nextInt();
                 sc.nextLine();
