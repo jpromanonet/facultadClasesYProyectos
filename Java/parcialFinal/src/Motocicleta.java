@@ -4,19 +4,33 @@
  * and open the template in the editor.
  */
 
-
 /**
  *
  * @author usuario
  */
-class Motocicleta {
+public class Motocicleta {
+	private String marca;
+	private String modelo;
+	private int año;
+	private int cilindrada;
+	private int peso;
+	
+	
+	public Motocicleta(String marca, String modelo, int año, int cilindrada, int peso) {
+		this.marca = marca;
+		this.modelo = modelo;
+		this.año = año;
+		this.cilindrada = cilindrada;
+		this.peso = peso;
+	}
+	
+	public void mostrar() {
+		System.out.println("Marca: "+marca);
+		System.out.println("Modelo: "+modelo);
+		System.out.println("Año: "+año);
+		System.out.println("cilindrada: "+cilindrada+("cm3"));
+		System.out.println("Peso: "+peso+"KG");
+	}
+	
 
-    Motocicleta(String marca, String modelo, int año, int cil, int peso) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void mostrar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

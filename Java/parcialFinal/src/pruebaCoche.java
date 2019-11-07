@@ -11,10 +11,10 @@
 public class pruebaCoche {
   public static void main(String[] args) {
     
-    Coche cocheDeTincho = new Coche("Saab", "93");
-    Coche cocheDeAriel = new Coche("Toyota", "Avensis");
+    Coche cocheDeTincho = new Coche("Fork K", "2017");
+    Coche cocheDeAriel = new Coche("Renault Clio", "2004");
 
-    cocheDeTincho.recorre(3000);
+    cocheDeTincho.recorre(3045600);
     cocheDeTincho.recorre(40);
     cocheDeTincho.recorre(220);
     cocheDeAriel.recorre(60);

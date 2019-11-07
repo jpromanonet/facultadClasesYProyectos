@@ -17,15 +17,16 @@ public class cargarMoto {
         try (Scanner sc = new Scanner(System.in)) {
             moto = new Motocicleta[1];
             for(int i=0;i<moto.length;i++) {
-                System.out.print("\nIngrese la marca de la moto "+(i+1)+":");
+                System.out.print("\nIngrese la marca de la moto :");
                 String marca=sc.nextLine();
-                System.out.print("Ingrese el modelo de la moto "+(i+1)+":");
+                System.out.print("Ingrese el modelo de la moto :");
                 String modelo=sc.nextLine();
-                System.out.print("Ingrese el año de la moto "+(i+1)+":");
+                System.out.print("Ingrese el año de la moto :");
                 int año=sc.nextInt();
-                System.out.print("Ingrese la cilindrada de la moto "+(i+1)+":");
+                System.out.print("Ingrese la cilindrada de la moto :");
                 int cil=sc.nextInt();
-                System.out.print("Ingrese el peso de la moto "+(i+1)+":");
+                System.out.print("Ingrese el peso de la moto :");
+                System.out.print("-----------------------------------");
                 int peso=sc.nextInt();
                 sc.nextLine();
                 
